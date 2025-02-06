@@ -1,0 +1,294 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "NeoHearts_API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Fhir/patient": {
+      "post": {
+        "tags": [
+          "Fhir"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Test": {
+      "post": {
+        "tags": [
+          "Test"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewbornModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewbornModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewbornModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NewbornModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sex": {
+            "type": "string",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "format": "date"
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "gestational_Age": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mode_of_Delivery": {
+            "type": "string",
+            "nullable": true
+          },
+          "birth_Weight": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "apgar_Scores_1min": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "apgar_Scores_5min": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "resuscitation": {
+            "type": "string",
+            "nullable": true
+          },
+          "maternal_age": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "parity": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "prenatal_ultrasound": {
+            "type": "boolean"
+          },
+          "chD_CCHD": {
+            "type": "boolean"
+          },
+          "extracardiac_Diagnosis": {
+            "type": "string",
+            "nullable": true
+          },
+          "sepsis": {
+            "type": "boolean"
+          },
+          "hr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "t": {
+            "type": "number",
+            "format": "float"
+          },
+          "cyanosis": {
+            "type": "boolean"
+          },
+          "increased_work_of_breathing": {
+            "type": "boolean"
+          },
+          "hc": {
+            "type": "number",
+            "format": "float"
+          },
+          "anterior": {
+            "type": "string",
+            "nullable": true
+          },
+          "posterior": {
+            "type": "string",
+            "nullable": true
+          },
+          "choanal_artesia": {
+            "type": "boolean"
+          },
+          "breath_sounds": {
+            "type": "string",
+            "nullable": true
+          },
+          "heart_sounds": {
+            "type": "string",
+            "nullable": true
+          },
+          "palpable_masses": {
+            "type": "string",
+            "nullable": true
+          },
+          "umbilical_cord": {
+            "type": "string",
+            "nullable": true
+          },
+          "position_patency": {
+            "type": "string",
+            "nullable": true
+          },
+          "spine_alignment": {
+            "type": "string",
+            "nullable": true
+          },
+          "sacral_dimple": {
+            "type": "string",
+            "nullable": true
+          },
+          "femoral_pulses_right": {
+            "type": "boolean"
+          },
+          "femoral_pulses_left": {
+            "type": "boolean"
+          },
+          "hip_dysplasia": {
+            "type": "boolean"
+          },
+          "moro_reflex": {
+            "type": "boolean"
+          },
+          "rooting_reflex": {
+            "type": "boolean"
+          },
+          "sucking_reflex": {
+            "type": "boolean"
+          },
+          "tone": {
+            "type": "boolean"
+          },
+          "activity": {
+            "type": "boolean"
+          },
+          "right_upper_arm": {
+            "type": "number",
+            "format": "float"
+          },
+          "right_leg": {
+            "type": "number",
+            "format": "float"
+          },
+          "cchD_first": {
+            "type": "string",
+            "nullable": true
+          },
+          "congenital_heart_disease": {
+            "type": "boolean"
+          },
+          "open_heart_surgery": {
+            "type": "boolean"
+          },
+          "sudden_cardiac_death": {
+            "type": "boolean"
+          },
+          "pacemaker": {
+            "type": "boolean"
+          },
+          "dysmorphism": {
+            "type": "string",
+            "nullable": true
+          },
+          "others": {
+            "type": "string",
+            "nullable": true
+          },
+          "discharge": {
+            "type": "boolean"
+          },
+          "repeat_CCHD": {
+            "type": "boolean"
+          },
+          "echocardiogram": {
+            "type": "boolean"
+          },
+          "cxr": {
+            "type": "boolean"
+          },
+          "ecg": {
+            "type": "boolean"
+          },
+          "ultrasound": {
+            "type": "boolean"
+          },
+          "follow_up": {
+            "type": "string",
+            "nullable": true
+          },
+          "checked_by": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

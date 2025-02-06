@@ -50,9 +50,33 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Google.Apis": {
+              "target": "Package",
+              "version": "[1.69.0, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
+            },
+            "Google.Apis.CloudHealthcare.v1": {
+              "target": "Package",
+              "version": "[1.68.0.3647, )"
+            },
+            "Hl7.Fhir.R4": {
+              "target": "Package",
+              "version": "[5.11.2, )"
+            },
+            "Hl7.Fhir.Serialization": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "Hl7.Fhir.Support": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.6.2, )"
+              "version": "[7.2.0, )"
             }
           },
           "imports": [
