@@ -14,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FhirController.cs",
-              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirController.cs",
-              "RelativeDocumentMoniker": "Controllers\\FhirController.cs",
-              "ToolTip": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirController.cs",
-              "RelativeToolTip": "Controllers\\FhirController.cs",
-              "ViewState": "AgIAAP0BAAAAAAAAAAAawAYCAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T12:08:13.277Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
@@ -40,6 +27,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FhirController.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FhirController.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirController.cs",
+              "RelativeToolTip": "Controllers\\FhirController.cs",
+              "ViewState": "AgIAAAUCAAAAAAAAAAAawBACAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-06T12:08:13.277Z",
+              "EditorCaption": ""
             }
           ]
         }
