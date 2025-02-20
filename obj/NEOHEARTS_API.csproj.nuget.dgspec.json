@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "E:\\work\\NEOHEARTS_API\\NeoHearts_API.csproj": {}
+    "E:\\work\\NEOHEARTS_API\\NEOHEARTS_API.csproj": {}
   },
   "projects": {
-    "E:\\work\\NEOHEARTS_API\\NeoHearts_API.csproj": {
+    "E:\\work\\NEOHEARTS_API\\NEOHEARTS_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\work\\NEOHEARTS_API\\NeoHearts_API.csproj",
-        "projectName": "NeoHearts_API",
-        "projectPath": "E:\\work\\NEOHEARTS_API\\NeoHearts_API.csproj",
+        "projectUniqueName": "E:\\work\\NEOHEARTS_API\\NEOHEARTS_API.csproj",
+        "projectName": "NEOHEARTS_API",
+        "projectPath": "E:\\work\\NEOHEARTS_API\\NEOHEARTS_API.csproj",
         "packagesPath": "C:\\Users\\asaf1\\.nuget\\packages\\",
         "outputPath": "E:\\work\\NEOHEARTS_API\\obj\\",
         "projectStyle": "PackageReference",
@@ -42,9 +42,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -98,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
