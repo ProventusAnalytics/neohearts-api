@@ -9,19 +9,19 @@ namespace NeoHearts_API.Models
         public int Id { get; set; }
 
         [Required, StringLength(50)]
-        public string? FirstName { get; set; }
+        public required string FirstName { get; set; }
 
-        [Required, StringLength(50)]
+        [ StringLength(50)]
         public string? LastName { get; set; }
 
-        [Required, RegularExpression("^(Male|Female|Other)$", ErrorMessage = "Sex must be Male, Female, or Other.")]
+        [ RegularExpression("^(Male|Female|Other)$", ErrorMessage = "Sex must be Male, Female, or Other.")]
         public string? Sex { get; set; }
 
         [Required]
         public DateOnly DOB { get; set; }
 
         [Range(0, 10, ErrorMessage = "Age must be between 0 and 10.")]
-        public int? Age { get; set; }
+        public int? Age { get; set; } = null;
 
         [Range(20, 42, ErrorMessage = "Gestational Age must be between 20 and 42 weeks.")]
         public int? Gestational_Age { get; set; }
@@ -86,7 +86,7 @@ namespace NeoHearts_API.Models
         public string? Sucking_reflex { get; set; }
 
         [Required]
-        public string? Tone { get; set; } = "normal";
+        public string? Tone { get; set; } 
 
         public string? Activity { get; set; }
 
@@ -106,14 +106,14 @@ namespace NeoHearts_API.Models
         public string? Discharge { get; set; }
         public string? Repeat_CCHD { get; set; }
 
-        public bool Echocardiogram { get; set; }
-        public bool CXR { get; set; }
-        public bool ECG { get; set; }
-        public bool Ultrasound { get; set; }
+        public bool Echocardiogram { get; set; } = false;
+        public bool CXR { get; set; } = false;
+        public bool ECG { get; set; } = false;
+        public bool Ultrasound { get; set; } = false;
 
         public string? Follow_up { get; set; }
 
-        [Required, StringLength(100)]
+        [ StringLength(100)]
         public string? Checked_by { get; set; }
     }
 }

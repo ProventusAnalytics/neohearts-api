@@ -95,7 +95,7 @@ namespace NeoHearts_API.Services
             },
             };
 
-            // ✅ Define the Bundle resource
+            // Define the Bundle resource
             var bundleData = new
             {
                 resourceType = "Bundle",
@@ -160,6 +160,7 @@ namespace NeoHearts_API.Services
                                     display = "Body Temperature",
                                 }, // Corrected LOINC code
                             },
+                            text = "Body temperature",
                         },
                         subject = new { reference = patientFullUrl }, // Ensures the Patient reference exists
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -210,6 +211,7 @@ namespace NeoHearts_API.Services
                                     display = "Gestational age",
                                 },
                             },
+                            text = "Gestational age",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -504,7 +506,7 @@ namespace NeoHearts_API.Services
                                     display = "Maternal age",
                                 },
                             },
-                            text = "Maternal Age",
+                            text = "Maternal age",
                         },
                         subject = new { reference = patientFullUrl },
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -732,6 +734,7 @@ namespace NeoHearts_API.Services
                                     display = "Heart rate",
                                 },
                             },
+                            text = "Heart rate",
                         },
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
@@ -782,6 +785,7 @@ namespace NeoHearts_API.Services
                                     display = "Respiratory rate",
                                 },
                             },
+                            text = "Respiratory rate",
                         },
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
@@ -799,56 +803,57 @@ namespace NeoHearts_API.Services
                         url = "Observation",
                     },
                 },
-                new FhirEntryModel
-                {
-                    fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
-                    resource = new
-                    {
-                        resourceType = "Observation",
-                        status = "final",
-                        category = new[]
-                        {
-                            new
-                            {
-                                coding = new[]
-                                {
-                                    new
-                                    {
-                                        system = "http://terminology.hl7.org/CodeSystem/observation-category",
-                                        code = "vital-signs",
-                                        display = "Vital Signs",
-                                    },
-                                },
-                            },
-                        },
-                        code = new
-                        {
-                            coding = new[]
-                            {
-                                new
-                                {
-                                    system = "http://loinc.org",
-                                    code = "8310-5", // LOINC code for "Body temperature"
-                                    display = "Body temperature",
-                                },
-                            },
-                        },
-                        subject = new { reference = patientFullUrl }, // Replace with actual patient reference
-                        effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
-                        valueQuantity = new
-                        {
-                            value = newborn.T, // Set the T value here
-                            unit = "°C",
-                            system = "http://unitsofmeasure.org",
-                            code = "Cel",
-                        },
-                    },
-                    request = new NeoHearts_API.Models.Request
-                    {
-                        method = "POST",
-                        url = "Observation",
-                    },
-                },
+                //new FhirEntryModel
+                //{
+                //    fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
+                //    resource = new
+                //    {
+                //        resourceType = "Observation",
+                //        status = "final",
+                //        category = new[]
+                //        {
+                //            new
+                //            {
+                //                coding = new[]
+                //                {
+                //                    new
+                //                    {
+                //                        system = "http://terminology.hl7.org/CodeSystem/observation-category",
+                //                        code = "vital-signs",
+                //                        display = "Vital Signs",
+                //                    },
+                //                },
+                //            },
+                //        },
+                //        code = new
+                //        {
+                //            coding = new[]
+                //            {
+                //                new
+                //                {
+                //                    system = "http://loinc.org",
+                //                    code = "8310-5", // LOINC code for "Body temperature"
+                //                    display = "Body temperature",
+                //                },
+                //            },
+                //            text = "Body Temperature",
+                //        },
+                //        subject = new { reference = patientFullUrl }, // Replace with actual patient reference
+                //        effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
+                //        valueQuantity = new
+                //        {
+                //            value = newborn.T, // Set the T value here
+                //            unit = "°C",
+                //            system = "http://unitsofmeasure.org",
+                //            code = "Cel",
+                //        },
+                //    },
+                //    request = new NeoHearts_API.Models.Request
+                //    {
+                //        method = "POST",
+                //        url = "Observation",
+                //    },
+                //},
                 new FhirEntryModel
                 {
                     fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
@@ -882,6 +887,7 @@ namespace NeoHearts_API.Services
                                     display = "Cyanosis (Central)",
                                 },
                             },
+                            text = "Central Cyanosis",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -926,6 +932,7 @@ namespace NeoHearts_API.Services
                                     display = "Increased Work of Breathing",
                                 },
                             },
+                            text = "Work of Breathing",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -970,6 +977,7 @@ namespace NeoHearts_API.Services
                                     display = "Head circumference",
                                 },
                             },
+                            text = "Head Circumference",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1020,10 +1028,30 @@ namespace NeoHearts_API.Services
                                     display = "Clinical Finding",
                                 },
                             },
+                            text = "Clinical Finding",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
-                        valueString = "Ant: " + newborn.Anterior + " Post: " + newborn.Posterior, // Use newborn model values
+                        //valueString = "Ant: " + newborn.Anterior + " Post: " + newborn.Posterior, // Use newborn model values
+                        component = new List<object>
+                        {
+                            new
+                            {
+                                code = new
+                                {
+                                   text = "Anterior Fontanelle",
+                                },
+                                valueString = newborn.Anterior,
+                            },
+                            new
+                            {
+                                  code = new
+                                {
+                                   text = "Posterior Fontanelle",
+                                },
+                                valueString = newborn.Posterior,
+                            },
+                        }
                     },
                     request = new NeoHearts_API.Models.Request
                     {
@@ -1064,6 +1092,7 @@ namespace NeoHearts_API.Services
                                     display = "Pupillary Response",
                                 },
                             },
+                            text = "Pupillary Response",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1108,6 +1137,7 @@ namespace NeoHearts_API.Services
                                     display = "Red Reflex",
                                 },
                             },
+                            text = "Red Reflex",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1197,6 +1227,7 @@ namespace NeoHearts_API.Services
                                     display = "Breath Sounds",
                                 },
                             },
+                            text = "Breath Sounds",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1241,6 +1272,7 @@ namespace NeoHearts_API.Services
                                     display = "Heart Sounds/Murmurs",
                                 },
                             },
+                            text = "Heart Sounds",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1285,6 +1317,7 @@ namespace NeoHearts_API.Services
                                     display = "Abdominal mass",
                                 },
                             },
+                            text = "Abdominal mass",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1329,6 +1362,7 @@ namespace NeoHearts_API.Services
                                     display = "Umbilical Cord",
                                 },
                             },
+                            text = "Umbilical Cord",
                         },
                         subject = new { reference = patientFullUrl },
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1373,6 +1407,7 @@ namespace NeoHearts_API.Services
                                     display = "Anus Position/Patency",
                                 },
                             },
+                            text = "Anus Position",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1462,7 +1497,7 @@ namespace NeoHearts_API.Services
                                     display = "Sacral Dimple/Hair Tufts",
                                 },
                             },
-                            text = "Sacral Dimple/Hair Tufts",
+                            text = "Sacral Dimple",
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -1526,6 +1561,7 @@ namespace NeoHearts_API.Services
                                             display = "Right femoral pulse",
                                         },
                                     },
+                            text = "Right Femoral Pulse",
                                 },
                                 valueString = newborn.Femoral_pulses_right, // Replace with actual value
                             },
@@ -1542,6 +1578,7 @@ namespace NeoHearts_API.Services
                                             display = "Left femoral pulse",
                                         },
                                     },
+                            text = "Left Femoral Pulse",
                                 },
                                 valueString = newborn.Femoral_pulses_left, // Replace with actual value
                             },
@@ -1632,7 +1669,7 @@ namespace NeoHearts_API.Services
                                     display = "Reflex",
                                 },
                             },
-                            text = "Moro Reflex (Startle Reflex)",
+                            text = "Moro Reflex",
                         },
                         subject = new { reference = patientFullUrl }, // Reference to the patient
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -2021,6 +2058,7 @@ namespace NeoHearts_API.Services
                                             display = "Congenital heart disease",
                                         },
                                     },
+                            text = "Congenital Heart Disease",
                                 },
                                 valueString = newborn.Congenital_heart_disease,
                             },
@@ -2037,6 +2075,7 @@ namespace NeoHearts_API.Services
                                             display = "Open-heart surgery",
                                         },
                                     },
+                            text = "Open Heart Surgery",
                                 },
                                 valueString = newborn.Open_heart_surgery,
                             },
@@ -2070,6 +2109,7 @@ namespace NeoHearts_API.Services
                                             display = "Pacemaker pulse generator",
                                         },
                                     },
+                            text = "Pacemaker",
                                 },
                                 valueString = newborn.Pacemaker,
                             },
@@ -2115,6 +2155,7 @@ namespace NeoHearts_API.Services
                                     display = "Dysmorphism",
                                 },
                             },
+                            text = "Dysmorphism",
                         },
                         subject = new { reference = patientFullUrl }, // Updated reference to patientFullUrl
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
@@ -2225,6 +2266,7 @@ namespace NeoHearts_API.Services
                                             display = "Discharge Status",
                                         },
                                     },
+                                    text = "Discharge",
                                 },
                                 valueString = newborn.Discharge,
                             },
@@ -2258,6 +2300,7 @@ namespace NeoHearts_API.Services
                                             display = "Echocardiogram",
                                         },
                                     },
+                            text = "Echocardiogram",
                                 },
                                 valueBoolean = newborn.Echocardiogram,
                             },
@@ -2274,6 +2317,7 @@ namespace NeoHearts_API.Services
                                             display = "Chest X-Ray (CXR)",
                                         },
                                     },
+                            text = "CXR",
                                 },
                                 valueBoolean = newborn.CXR,
                             },
@@ -2290,6 +2334,7 @@ namespace NeoHearts_API.Services
                                             display = "ECG",
                                         },
                                     },
+                            text = "ECG",
                                 },
                                 valueBoolean = newborn.ECG,
                             },
@@ -2306,6 +2351,7 @@ namespace NeoHearts_API.Services
                                             display = "Ultrasound",
                                         },
                                     },
+                            text = "Ultrasound",
                                 },
                                 valueBoolean = newborn.Ultrasound,
                             },

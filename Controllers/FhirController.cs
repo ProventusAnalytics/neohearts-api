@@ -1,6 +1,8 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using Google.Apis.Auth.OAuth2;
+using Google.Apis.CloudHealthcare.v1.Data;
 using Microsoft.AspNetCore.Mvc;
 using NeoHearts_API.Models;
 using NeoHearts_API.Services;
@@ -9,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/fhir")]
 public class FhirController : ControllerBase
 {
     private readonly string fhirBaseUrl;
@@ -39,49 +41,56 @@ public class FhirController : ControllerBase
         );
     }
 
-    [HttpGet("patient")]
-    public async Task<IActionResult> TestFhirConnection()
+
+    [HttpPut("patient/{patientId}")]
+    public async Task<IActionResult> UpdatePatient([FromRoute]string patientId)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         await AuthenticateAsync(); // Ensure authentication before request
 
-        var response = await _httpClient.GetAsync($"{fhirBaseUrl}/Patient");
-        if (response.IsSuccessStatusCode)
+        // Step 1: Find the Bundle associated with the Patient
+        var searchUrl = $"{fhirBaseUrl}/Patient/?_id={patientId}&_revinclude=Observation:patient";
+        //var searchUrl = $"{fhirBaseUrl}/Patient/{patientId}?_revinclude=Encounter:patient&_revinclude=Condition:patient";
+        var observationUrl = $"{fhirBaseUrl}/Observation?patient=Patient/{patientId}";
+        var searchResponse = await _httpClient.GetAsync(searchUrl);
+        var searchContent = await searchResponse.Content.ReadAsStringAsync();
+
+        if (!searchResponse.IsSuccessStatusCode)
         {
-            var content = await response.Content.ReadAsStringAsync();
-            return Ok(content);
+            return StatusCode((int)searchResponse.StatusCode, "Failed to retrieve bundle: " + searchContent);
         }
-        return StatusCode((int)response.StatusCode, response.ReasonPhrase);
-    }
 
-    [HttpPut("patient/{id}")]
-    public async Task<IActionResult> UpdatePatient(string id)
-    {
-        await AuthenticateAsync();
-        Console.WriteLine("The id is:" + id);
-        Console.ReadLine();
-        var patientData = new
-        {
-            resourceType = "Patient",
-            id = id,
-            identifier = new[]
-            {
-                new
-                {
-                    use = "official",
-                    system = "http://example.com/newborn-id-system",
-                    value = $"NB-{Guid.NewGuid()}",
-                },
-            },
-            name = new[] { new { family = "newnewnew", given = new[] { "newnewnew" } } },
-            gender = "female",
-            birthDate = "2020-01-01",
-        };
+        return Ok(searchContent);
+        // Parse the JSON response to get the Bundle ID
+        //var searchResult = JsonConvert.DeserializeObject<dynamic>(searchContent);
+        //var bundleId = (string)searchResult?.entry?[0]?.resource?.id;
 
-        var content = JsonConvert.SerializeObject(patientData);
-        var stringcontent = new StringContent(content, Encoding.UTF8, "application/fhir+json");
+        //if (string.IsNullOrEmpty(bundleId))
+        //{
+        //    return NotFound("No Bundle found for the given Patient ID.");
+        //}
 
-        var res = await _httpClient.PutAsync($"{fhirBaseUrl}/Patient/{id}", stringcontent);
-        return Ok(new { message = "Item updated successfully!", res });
+        //// Step 2: Generate a new Bundle with updated data
+        //var updatedBundle = _fhirBundleService.CreateFhirBundle(newborn);
+        //var jsonContent = JsonConvert.SerializeObject(updatedBundle);
+        //var content = new StringContent(jsonContent, Encoding.UTF8, "application/fhir+json");
+
+        // Step 3: Replace the existing Bundle using PUT request
+        //var updateResponse = await _httpClient.PutAsync($"{fhirBaseUrl}/Bundle/{bundleId}", content);
+        //var updateContent = await updateResponse.Content.ReadAsStringAsync();
+
+        //if (updateResponse.IsSuccessStatusCode)
+        //{
+        //    return Ok(new { message = "Bundle updated successfully", updateContent });
+        //}
+        //else
+        //{
+        //    return StatusCode((int)updateResponse.StatusCode, updateContent);
+        //}
     }
 
     [HttpGet("patient/{id}")]
@@ -119,7 +128,13 @@ public class FhirController : ControllerBase
     [HttpPost("bundle")]
     public async Task<IActionResult> CreateBundle(NewbornModel newborn)
     {
-        Console.WriteLine("The newborn is:" + JsonConvert.SerializeObject(newborn));
+        //Console.WriteLine("The newborn is:" + JsonConvert.SerializeObject(newborn));
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         await AuthenticateAsync(); // Ensure authentication before request
 
         var bundleData = _fhirBundleService.CreateFhirBundle(newborn);
@@ -188,5 +203,62 @@ public class FhirController : ControllerBase
             return StatusCode((int)response.StatusCode, "Not found");
         }
     }
-
 }
+
+
+// -------> EXAMPLE OF FETCHING A OBSERVATION RESOURCE AND PATIENT THEN COMBINING THEM INTO A SINGLE RESPONSE <-------
+
+//[HttpPut("patient/{patientId}")]
+//public async Task<IActionResult> UpdatePatient([FromRoute] string patientId)
+//{
+//    if (!ModelState.IsValid)
+//    {
+//        return BadRequest(ModelState);
+//    }
+
+//    await AuthenticateAsync(); // Ensure authentication before request
+
+//    try
+//    {
+//        // Fetch Patient resource
+//        var patientUrl = $"{fhirBaseUrl}/Patient/{patientId}";
+//        var patientResponse = await _httpClient.GetAsync(patientUrl);
+
+//        if (!patientResponse.IsSuccessStatusCode)
+//        {
+//            var errorContent = await patientResponse.Content.ReadAsStringAsync();
+//            return StatusCode((int)patientResponse.StatusCode, $"Failed to retrieve patient: {errorContent}");
+//        }
+
+//        var patientContent = await patientResponse.Content.ReadAsStringAsync();
+//        var patientResource = JsonConvert.DeserializeObject(patientContent);
+
+//        // Fetch Observation resources
+//        var observationUrl = $"{fhirBaseUrl}/Observation?patient=Patient/{patientId}";
+//        var observationResponse = await _httpClient.GetAsync(observationUrl);
+
+//        if (!observationResponse.IsSuccessStatusCode)
+//        {
+//            var errorContent = await observationResponse.Content.ReadAsStringAsync();
+//            return StatusCode((int)observationResponse.StatusCode, $"Failed to retrieve observations: {errorContent}");
+//        }
+
+//        var observationContent = await observationResponse.Content.ReadAsStringAsync();
+//        var observationBundle = JsonConvert.DeserializeObject(observationContent);
+
+//        // Combine results
+//        var result = new
+//        {
+//            Patient = patientResource,
+//            Observations = observationBundle
+//        };
+
+//        return Ok(result);
+//    }
+//    catch (Exception ex)
+//    {
+//        // Log the exception for debugging
+//        Console.WriteLine($"An error occurred: {ex.Message}");
+//        return StatusCode(500, "An internal error occurred while processing your request.");
+//    }
+//}
