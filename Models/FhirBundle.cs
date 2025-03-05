@@ -1,6 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
+
+public class FhirFetchedBuncle
+{
+    public Patient Patient { get; set; }
+    public List<Observation> Observation { get; set; }
+
+}
+
 public class FhirBundle<T>
 {
     [JsonProperty("entry")]

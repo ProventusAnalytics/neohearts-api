@@ -5,7 +5,7 @@ namespace NeoHearts_API.Models
     public class OrganizationModel
     {
         [JsonProperty("id")]
-        public required string Id { get; set; }
+        public string? Id { get; set; }
 
         [JsonProperty("name")]
         public required string Name { get; set; }
@@ -14,10 +14,10 @@ namespace NeoHearts_API.Models
         public bool Active { get; set; }
 
         [JsonProperty("meta")]
-        public Meta Meta { get; set; }
+        public Meta? Meta { get; set; }
 
         [JsonProperty("resourceType")]
-        public string ResourceType { get; set; }
+        public string? ResourceType { get; set; }
     }
 
     public class Meta

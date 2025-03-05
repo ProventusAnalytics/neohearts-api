@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "E:\\work\\NEOHEARTS_API\\NEOHEARTS_API.csproj": {}
+    "E:\\work\\NEOHEARTS_API\\NeoHearts_API.csproj": {}
   },
   "projects": {
-    "E:\\work\\NEOHEARTS_API\\NEOHEARTS_API.csproj": {
+    "E:\\work\\NEOHEARTS_API\\NeoHearts_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\work\\NEOHEARTS_API\\NEOHEARTS_API.csproj",
-        "projectName": "NEOHEARTS_API",
-        "projectPath": "E:\\work\\NEOHEARTS_API\\NEOHEARTS_API.csproj",
+        "projectUniqueName": "E:\\work\\NEOHEARTS_API\\NeoHearts_API.csproj",
+        "projectName": "NeoHearts_API",
+        "projectPath": "E:\\work\\NEOHEARTS_API\\NeoHearts_API.csproj",
         "packagesPath": "C:\\Users\\asaf1\\.nuget\\packages\\",
         "outputPath": "E:\\work\\NEOHEARTS_API\\obj\\",
         "projectStyle": "PackageReference",
@@ -50,6 +50,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Auth0.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[1.4.1, )"
+            },
             "Google.Apis": {
               "target": "Package",
               "version": "[1.69.0, )"

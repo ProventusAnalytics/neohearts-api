@@ -3,6 +3,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.CloudHealthcare.v1.Data;
+using Hl7.Fhir.Model;
+using Hl7.Fhir.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using NeoHearts_API.Models;
 using NeoHearts_API.Services;
@@ -18,9 +20,11 @@ public class FhirController : ControllerBase
     private readonly HttpClient _httpClient;
 
     private readonly IFhirBundleService _fhirBundleService;
-    public FhirController(IFhirBundleService fhirBundleService)
+    private readonly IFhirDataMappingService _fhirDataMappingService;
+    public FhirController(IFhirBundleService fhirBundleService, IFhirDataMappingService fhirDataMappingService)
     {
         _fhirBundleService = fhirBundleService;
+        _fhirDataMappingService = fhirDataMappingService;
         _httpClient = new HttpClient();
         fhirBaseUrl =
             "https://healthcare.googleapis.com/v1/projects/neohearts-dev/locations/asia-south1/datasets/neohearts-fhir-dataset/fhirStores/neohearts-fhir-datastore/fhir";
@@ -97,13 +101,37 @@ public class FhirController : ControllerBase
     public async Task<IActionResult> FetchSinglePatient(string id)
     {
         await AuthenticateAsync(); // Ensure authentication before request
+        var searchUrl = $"{fhirBaseUrl}/Patient/?_id={id}&_revinclude=Observation:patient";
+        //var searchUrl = $"{fhirBaseUrl}/Bundle/3bd37958-8785-4f53-9ba1-132b5aecc0d2";
 
-        var response = await _httpClient.GetAsync($"{fhirBaseUrl}/Patient/{id}");
+        var response = await _httpClient.GetAsync(searchUrl);
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
-            return Ok(content);
+
+            try
+            {
+                // Use FHIR's built-in parser instead of Newtonsoft.Json
+                var parser = new FhirJsonParser();
+                var bundle = parser.Parse<Bundle>(content);
+
+                // Ensure the parsed bundle is valid
+                if (bundle == null)
+                {
+                    return BadRequest("Failed to parse FHIR Bundle.");
+                }
+
+                // Map the bundle to NewbornModel
+                var mappedData = _fhirDataMappingService.MapFhirToNewbornModel(bundle);
+
+                return Ok(mappedData); // Return the mapped patient data
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error parsing FHIR Bundle: {ex.Message}");
+            }
         }
+
         return StatusCode((int)response.StatusCode, response.ReasonPhrase);
     }
 

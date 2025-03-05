@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NeoHearts_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58dfd91886314d839e592a201065f85d8c1ea63d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8371ff22d66656d3e21895eab98066236a4269ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("NeoHearts_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NeoHearts_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

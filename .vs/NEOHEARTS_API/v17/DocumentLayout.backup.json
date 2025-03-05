@@ -3,28 +3,44 @@
   "WorkspaceRootPath": "E:\\work\\NEOHEARTS_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\services\\fhirbundleservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:services\\fhirbundleservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\newbornmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\newbornmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\controllers\\fhirorganizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:controllers\\fhirorganizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\services\\ifhirdatamappingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:services\\ifhirdatamappingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\controllers\\fhircontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:controllers\\fhircontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\dtos\\updateorganizationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\dtos\\updateorganizationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\services\\fhirdatamappingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:services\\fhirdatamappingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\fhirbundle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\fhirbundle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\organizationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\organizationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\newbornmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\newbornmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\fhirentrymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\fhirentrymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\dtos\\patientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\dtos\\patientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\dtos\\updateorganizationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\dtos\\updateorganizationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,21 +50,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 11,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FhirBundleServices.cs",
-              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Services\\FhirBundleServices.cs",
-              "RelativeDocumentMoniker": "Services\\FhirBundleServices.cs",
-              "ToolTip": "E:\\work\\NEOHEARTS_API\\Services\\FhirBundleServices.cs",
-              "RelativeToolTip": "Services\\FhirBundleServices.cs",
-              "ViewState": "AgIAAP0DAAAAAAAAAAAswAoEAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T05:31:30.595Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
@@ -59,7 +62,85 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T13:14:10.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FhirBundle.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\FhirBundle.cs",
+              "RelativeDocumentMoniker": "Models\\FhirBundle.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Models\\FhirBundle.cs",
+              "RelativeToolTip": "Models\\FhirBundle.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAcwBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T12:16:10.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IFhirDataMappingService.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Services\\IFhirDataMappingService.cs",
+              "RelativeDocumentMoniker": "Services\\IFhirDataMappingService.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Services\\IFhirDataMappingService.cs",
+              "RelativeToolTip": "Services\\IFhirDataMappingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T12:13:08.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "FhirDataMappingService.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Services\\FhirDataMappingService.cs",
+              "RelativeDocumentMoniker": "Services\\FhirDataMappingService.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Services\\FhirDataMappingService.cs",
+              "RelativeToolTip": "Services\\FhirDataMappingService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAcAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T12:12:57.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PatientDto.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\DTOs\\PatientDto.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\PatientDto.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Models\\DTOs\\PatientDto.cs",
+              "RelativeToolTip": "Models\\DTOs\\PatientDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T11:29:25.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FhirEntryModel.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\FhirEntryModel.cs",
+              "RelativeDocumentMoniker": "Models\\FhirEntryModel.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Models\\FhirEntryModel.cs",
+              "RelativeToolTip": "Models\\FhirEntryModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T08:25:38.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "UpdateOrganizationDto.cs",
               "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\DTOs\\UpdateOrganizationDto.cs",
               "RelativeDocumentMoniker": "Models\\DTOs\\UpdateOrganizationDto.cs",
@@ -67,44 +148,30 @@
               "RelativeToolTip": "Models\\DTOs\\UpdateOrganizationDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T05:22:42.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T05:22:42.552Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "OrganizationModel.cs",
               "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\OrganizationModel.cs",
               "RelativeDocumentMoniker": "Models\\OrganizationModel.cs",
               "ToolTip": "E:\\work\\NEOHEARTS_API\\Models\\OrganizationModel.cs",
               "RelativeToolTip": "Models\\OrganizationModel.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAywCIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBMAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-21T04:01:11.64Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FhirOrganizationController.cs",
-              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirOrganizationController.cs",
-              "RelativeDocumentMoniker": "Controllers\\FhirOrganizationController.cs",
-              "ToolTip": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirOrganizationController.cs",
-              "RelativeToolTip": "Controllers\\FhirOrganizationController.cs",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAUwLkAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T03:58:09.058Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "NewbornModel.cs",
               "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\NewbornModel.cs",
               "RelativeDocumentMoniker": "Models\\NewbornModel.cs",
               "ToolTip": "E:\\work\\NEOHEARTS_API\\Models\\NewbornModel.cs",
               "RelativeToolTip": "Models\\NewbornModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-20T07:57:53.858Z",
               "EditorCaption": ""
@@ -117,7 +184,7 @@
               "RelativeDocumentMoniker": "Controllers\\FhirController.cs",
               "ToolTip": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirController.cs",
               "RelativeToolTip": "Controllers\\FhirController.cs",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAowE0AAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAASwH4AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-20T07:29:45.095Z",
               "EditorCaption": ""

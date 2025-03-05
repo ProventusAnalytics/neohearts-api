@@ -348,7 +348,15 @@ namespace NeoHearts_API.Services
                                 },
                             },
                         },
-                        code = new { text = "Apgar scores" },
+                        code = new {  coding = new[]
+                                    {
+                                        new
+                                        {
+                                            system = "http://loinc.org",
+                                            code = "9272-6",
+                                            display = "1 minute Apgar score",
+                                        },
+                                    },text = "Apgar scores" },
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
                         subject = new { reference = patientFullUrl }, // Use patientFullUrl for reference
                         component = new[]
@@ -693,7 +701,7 @@ namespace NeoHearts_API.Services
                             reference = patientFullUrl, // Use the actual patient reference
                         },
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
-                        valueString = $"Diagnosis: {newborn.Extracardiac_Diagnosis}" // Replace with actual diagnosis text
+                        valueString = $"{newborn.Extracardiac_Diagnosis}" // Replace with actual diagnosis text
                     },
                     request = new NeoHearts_API.Models.Request
                     {
