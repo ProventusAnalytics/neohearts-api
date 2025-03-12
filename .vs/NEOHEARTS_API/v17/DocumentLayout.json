@@ -3,6 +3,46 @@
   "WorkspaceRootPath": "E:\\work\\NEOHEARTS_API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\dtos\\updateorganizationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\dtos\\updateorganizationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\controllers\\fhirorganizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:controllers\\fhirorganizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\controllers\\fhircontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:controllers\\fhircontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\newbornmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\newbornmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\services\\fhirupdateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:services\\fhirupdateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\services\\fhirdatamappingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:services\\fhirdatamappingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\models\\organizationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:models\\organizationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\services\\ifhirupdateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:services\\ifhirupdateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|e:\\work\\neohearts_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DBDDE055-A961-4991-8441-29D5698A01A4}|NeoHearts_API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,15 +62,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "E:\\work\\NEOHEARTS_API\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAYwC4AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "FhirController.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FhirController.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirController.cs",
+              "RelativeToolTip": "Controllers\\FhirController.cs",
+              "ViewState": "AgIAAJAAAAAAAAAAAADwv74AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T06:14:39.14Z",
+              "WhenOpened": "2025-03-05T06:45:46.796Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UpdateOrganizationDto.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\DTOs\\UpdateOrganizationDto.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\UpdateOrganizationDto.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Models\\DTOs\\UpdateOrganizationDto.cs",
+              "RelativeToolTip": "Models\\DTOs\\UpdateOrganizationDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T05:15:11.005Z",
               "EditorCaption": ""
             },
             {
@@ -40,6 +94,115 @@
             {
               "$type": "Bookmark",
               "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FhirDataMappingService.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Services\\FhirDataMappingService.cs",
+              "RelativeDocumentMoniker": "Services\\FhirDataMappingService.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Services\\FhirDataMappingService.cs",
+              "RelativeToolTip": "Services\\FhirDataMappingService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAUwB8AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T15:24:11.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OrganizationModel.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\OrganizationModel.cs",
+              "RelativeDocumentMoniker": "Models\\OrganizationModel.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Models\\OrganizationModel.cs",
+              "RelativeToolTip": "Models\\OrganizationModel.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwCQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T13:03:27.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FhirOrganizationController.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirOrganizationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FhirOrganizationController.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Controllers\\FhirOrganizationController.cs",
+              "RelativeToolTip": "Controllers\\FhirOrganizationController.cs",
+              "ViewState": "AgIAAKkAAAAAAAAAAAASwK4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T13:55:40.488Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IFhirUpdateService.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Services\\IFhirUpdateService.cs",
+              "RelativeDocumentMoniker": "Services\\IFhirUpdateService.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Services\\IFhirUpdateService.cs",
+              "RelativeToolTip": "Services\\IFhirUpdateService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T09:59:34.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FhirUpdateService.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Services\\FhirUpdateService.cs",
+              "RelativeDocumentMoniker": "Services\\FhirUpdateService.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Services\\FhirUpdateService.cs",
+              "RelativeToolTip": "Services\\FhirUpdateService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAswCAAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T14:26:16.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NewbornModel.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Models\\NewbornModel.cs",
+              "RelativeDocumentMoniker": "Models\\NewbornModel.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Models\\NewbornModel.cs",
+              "RelativeToolTip": "Models\\NewbornModel.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAA5wEwAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T09:09:24.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAmwAwAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-05T08:48:40.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-05T08:45:14.516Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\work\\NEOHEARTS_API\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\work\\NEOHEARTS_API\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAA0AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T06:14:39.14Z"
             }
           ]
         }

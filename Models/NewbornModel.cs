@@ -9,12 +9,13 @@ namespace NeoHearts_API.Models
         public string? FirstName { get; set; }
         [StringLength(50)]
         public string? LastName { get; set; }
+        public int Age { get; set; }
         [RegularExpression("^(Male|Female|Other)$", ErrorMessage = "Sex must be Male, Female, or Other.")]
         public string? Sex { get; set; }
         [Required]
         public DateOnly DOB { get; set; }
         public int? Gestational_Age { get; set; }
-        [Required, RegularExpression("^(SVD|VAD|LSCS|Other)$", ErrorMessage = "Mode of Delivery must be SVD, VAD, LSCS, or Other.")]
+        //[Required, RegularExpression("^(SVD|VAD|LSCS|Other)$", ErrorMessage = "Mode of Delivery must be SVD, VAD, LSCS, or Other.")]
         public string? Mode_of_Delivery { get; set; }
         public float? Birth_Weight { get; set; }
         public int? Apgar_Scores_1min { get; set; }
@@ -74,5 +75,7 @@ namespace NeoHearts_API.Models
 
         [Required, StringLength(100)]
         public string? Checked_by { get; set; }
+        public string OrganizationId { get; set; }
+        public string? OrganizationName { get; set; }
     }
 }

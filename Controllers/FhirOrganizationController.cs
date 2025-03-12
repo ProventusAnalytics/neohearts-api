@@ -6,6 +6,8 @@ using NeoHearts_API.Models;
 using Newtonsoft.Json;
 using System.Text;
 using NeoHearts_API.Models.DTOs;
+using Hl7.Fhir.Model;
+using Hl7.Fhir.Serialization;
 
 namespace NeoHearts_API.Controllers
 {
@@ -87,30 +89,6 @@ namespace NeoHearts_API.Controllers
 
             var response = await _httpClient.GetAsync($"{fhirBaseUrl}/Organization");
             var resContent = await response.Content.ReadAsStringAsync();
-            //Console.WriteLine("The response is:" + resContent);
-            //var bundle = JsonConvert.DeserializeObject<FhirBundle<Patient>>(resContent);
-            //if (bundle?.Entry == null || bundle.Entry.Count == 0)
-            //{
-            //    return NotFound("No patients found.");
-            //}
-            //var patientData = new List<object>(); // List to hold patient details
-
-            //foreach (var entry in bundle.Entry)
-            //{
-            //    var patient = entry.Resource; // Extract patient resource
-            //    if (patient != null)
-            //    {
-            //        var patientInfo = new
-            //        {
-            //            patient.Id,
-            //            Name = string.Join(" ", patient.Name?[0].Given) + " " + patient.Name?[0].Family,
-            //            patient.BirthDate,
-            //            patient.Gender
-
-            //        };
-            //        patientData.Add(patientInfo); // Add the patient info to the list
-            //    }
-            //}
 
             if (response.IsSuccessStatusCode)
             {
@@ -121,6 +99,41 @@ namespace NeoHearts_API.Controllers
                 return StatusCode((int)response.StatusCode, "Not found");
             }
         }
+
+        [HttpGet("names")]
+        public async Task<IActionResult> GetOrganizationNames()
+        {
+            await AuthenticateAsync(); // Ensure authentication before request
+
+            var response = await _httpClient.GetAsync($"{fhirBaseUrl}/Organization");
+            var resContent = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return StatusCode((int)response.StatusCode, "Not found");
+            }
+
+            var orgs = new FhirJsonParser().Parse<Bundle>(resContent);
+            var orgList = new List<object>(); // List to hold ID and Name
+
+            if (orgs?.Entry != null)
+            {
+                foreach (var entry in orgs.Entry)
+                {
+                    if (entry.Resource is Organization orgResource)
+                    {
+                        orgList.Add(new
+                        {
+                            orgResource.Id,
+                            orgResource.Name
+                        });
+                    }
+                }
+            }
+
+            return Ok(orgList);
+        }
+
 
 
         [HttpGet("{orgId}")]
@@ -133,7 +146,10 @@ namespace NeoHearts_API.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return Ok(resContent); // Return org data
+                var orgData = new FhirJsonParser().Parse<Organization>(resContent);
+                string orgName = orgData.Name ?? "Unknown";
+
+                return Ok(new { name = orgName });
             }
             else
             {

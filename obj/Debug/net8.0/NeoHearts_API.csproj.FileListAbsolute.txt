@@ -99,3 +99,13 @@ E:\work\NEOHEARTS_API\obj\Debug\net8.0\refint\NEOHEARTS_API.dll
 E:\work\NEOHEARTS_API\obj\Debug\net8.0\NEOHEARTS_API.pdb
 E:\work\NEOHEARTS_API\obj\Debug\net8.0\NEOHEARTS_API.genruntimeconfig.cache
 E:\work\NEOHEARTS_API\obj\Debug\net8.0\ref\NEOHEARTS_API.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Auth0.AspNetCore.Authentication.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+E:\work\NEOHEARTS_API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

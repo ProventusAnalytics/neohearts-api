@@ -1,4 +1,5 @@
-﻿using NeoHearts_API.Models;
+﻿using Hl7.Fhir.Model;
+using NeoHearts_API.Models;
 
 namespace NeoHearts_API.Services
 {
@@ -124,6 +125,15 @@ namespace NeoHearts_API.Services
                         },
                         gender = newborn.Sex,
                         birthDate = newborn.DOB,
+                        extension = new[]
+                        {
+                            new
+                            {
+                                url = "http://hl7.org/fhir/StructureDefinition/patient-age",
+                                valueInteger = newborn.Age
+                            }
+                        },
+                         managingOrganization = new { reference = $"Organization/{newborn.OrganizationId}" }
                     },
                     request = new NeoHearts_API.Models.Request { method = "POST", url = "Patient" },
                 },
@@ -425,7 +435,16 @@ namespace NeoHearts_API.Services
                                 },
                             },
                         },
-                        code = new { text = "Resuscitation Procedure" },
+                        code = new {
+                            coding = new[]
+                            {
+                                new
+                                {
+                                    system = "http://snomed.info/sct",
+                                    code = "232717009",
+                                    display = "Cardiopulmonary resuscitation",
+                                },
+                            }, text = "Resuscitation Procedure" },
                         subject = new { reference = patientFullUrl }, // Use patientFullUrl for reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
                         valueString = newborn.Resuscitation, // Set based on NR/BMV/CPR/Adr from form input

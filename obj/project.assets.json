@@ -192,6 +192,25 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.11": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.10.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Authentication.OpenIdConnect/8.0.1": {
         "type": "package",
         "dependencies": {
@@ -729,6 +748,21 @@
         "lib/net6.0/Hl7.Fhir.Support.xml",
         "lib/netstandard2.0/Hl7.Fhir.Support.dll",
         "lib/netstandard2.0/Hl7.Fhir.Support.xml"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/6.0.11": {
+      "sha512": "ivpWC8L84Y+l9VZOa0uJXPoUE+n3TiSRZpfKxMElRtLMYCeXmz5x3O7CuCJkZ65z1520RWuEZDmHefxiz5TqPg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/6.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.6.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication.OpenIdConnect/8.0.1": {
@@ -1506,6 +1540,7 @@
       "Hl7.Fhir.R4 >= 5.11.2",
       "Hl7.Fhir.Serialization >= 4.3.0",
       "Hl7.Fhir.Support >= 4.3.0",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.11",
       "Swashbuckle.AspNetCore >= 7.2.0"
     ]
   },
@@ -1586,6 +1621,10 @@
           "Hl7.Fhir.Support": {
             "target": "Package",
             "version": "[4.3.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[6.0.11, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

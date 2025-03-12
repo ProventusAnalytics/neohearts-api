@@ -31,4 +31,9 @@ namespace NeoHearts_API.Models
         [JsonProperty("versionId")]
         public string VersionId { get; set; }
     }
+
+    public class OrganizationName
+    {
+        public List<string> Name { get; set; }
+    }
 }

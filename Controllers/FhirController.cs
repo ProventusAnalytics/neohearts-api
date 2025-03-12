@@ -4,12 +4,15 @@ using System.Text;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.CloudHealthcare.v1.Data;
 using Hl7.Fhir.Model;
+using Hl7.Fhir.Model.CdsHooks;
 using Hl7.Fhir.Serialization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NeoHearts_API.Models;
 using NeoHearts_API.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Task = System.Threading.Tasks.Task;
 
 
 [ApiController]
@@ -18,14 +21,19 @@ public class FhirController : ControllerBase
 {
     private readonly string fhirBaseUrl;
     private readonly HttpClient _httpClient;
+    private readonly HttpClient _newhttpClient;
 
     private readonly IFhirBundleService _fhirBundleService;
     private readonly IFhirDataMappingService _fhirDataMappingService;
-    public FhirController(IFhirBundleService fhirBundleService, IFhirDataMappingService fhirDataMappingService)
+    private readonly IFhirUpdateService _fhirUpdateService;
+
+    public FhirController(IFhirBundleService fhirBundleService, IFhirDataMappingService fhirDataMappingService, IFhirUpdateService fhirUpdateService)
     {
         _fhirBundleService = fhirBundleService;
         _fhirDataMappingService = fhirDataMappingService;
+        _fhirUpdateService = fhirUpdateService;
         _httpClient = new HttpClient();
+        _newhttpClient = new HttpClient();
         fhirBaseUrl =
             "https://healthcare.googleapis.com/v1/projects/neohearts-dev/locations/asia-south1/datasets/neohearts-fhir-dataset/fhirStores/neohearts-fhir-datastore/fhir";
     }
@@ -45,62 +53,86 @@ public class FhirController : ControllerBase
         );
     }
 
+    private async System.Threading.Tasks.Task AuthenticateAsyncReq(HttpRequest request)
+    {
+        var token = request.Headers.Authorization.ToString().Replace("Bearer ", "");
+
+        if (string.IsNullOrEmpty(token))
+        {
+            throw new UnauthorizedAccessException("No token provided.");
+        }
+
+        // You can use the token for additional validation if needed or pass it to your API call
+        _newhttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        Console.WriteLine("authorization pachi" + _newhttpClient.DefaultRequestHeaders.Authorization);
+
+        await System.Threading.Tasks.Task.CompletedTask;
+    }
+
+
 
     [HttpPut("patient/{patientId}")]
-    public async Task<IActionResult> UpdatePatient([FromRoute]string patientId)
+    public async Task<IActionResult> UpdatePatient([FromRoute] string patientId, [FromBody] NewbornModel newborn)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
-
         await AuthenticateAsync(); // Ensure authentication before request
 
-        // Step 1: Find the Bundle associated with the Patient
+        // Step 1: Retrieve the existing Bundle
         var searchUrl = $"{fhirBaseUrl}/Patient/?_id={patientId}&_revinclude=Observation:patient";
-        //var searchUrl = $"{fhirBaseUrl}/Patient/{patientId}?_revinclude=Encounter:patient&_revinclude=Condition:patient";
-        var observationUrl = $"{fhirBaseUrl}/Observation?patient=Patient/{patientId}";
         var searchResponse = await _httpClient.GetAsync(searchUrl);
-        var searchContent = await searchResponse.Content.ReadAsStringAsync();
+        var bundleContent = await searchResponse.Content.ReadAsStringAsync();
 
         if (!searchResponse.IsSuccessStatusCode)
         {
-            return StatusCode((int)searchResponse.StatusCode, "Failed to retrieve bundle: " + searchContent);
+            return StatusCode((int)searchResponse.StatusCode, "Failed to retrieve bundle: " + bundleContent);
         }
+        Console.WriteLine("here1");
 
-        return Ok(searchContent);
-        // Parse the JSON response to get the Bundle ID
-        //var searchResult = JsonConvert.DeserializeObject<dynamic>(searchContent);
-        //var bundleId = (string)searchResult?.entry?[0]?.resource?.id;
+        var parser = new FhirJsonParser();
+        var bundle = parser.Parse<Bundle>(bundleContent);
 
-        //if (string.IsNullOrEmpty(bundleId))
-        //{
-        //    return NotFound("No Bundle found for the given Patient ID.");
-        //}
+        // Step 2: Generate an updated Bundle
+        var updatedBundle = _fhirUpdateService.UpdateFhirBundleFromNewbornModel(bundle, newborn);
 
-        //// Step 2: Generate a new Bundle with updated data
-        //var updatedBundle = _fhirBundleService.CreateFhirBundle(newborn);
-        //var jsonContent = JsonConvert.SerializeObject(updatedBundle);
-        //var content = new StringContent(jsonContent, Encoding.UTF8, "application/fhir+json");
+        var tasks = updatedBundle.Entry
+    .Where(entry => entry.Resource?.Id != null)
+    .Select(async entry =>
+    {
+        var resourceType = entry.Resource.GetType().Name;
+        var resourceId = entry.Resource.Id;
+        var jsonContent = new FhirJsonSerializer().SerializeToString(entry.Resource);
+        var content = new StringContent(jsonContent, Encoding.UTF8, "application/fhir+json");
+        var updateUrl = $"{fhirBaseUrl}/{resourceType}/{resourceId}";
 
-        // Step 3: Replace the existing Bundle using PUT request
-        //var updateResponse = await _httpClient.PutAsync($"{fhirBaseUrl}/Bundle/{bundleId}", content);
-        //var updateContent = await updateResponse.Content.ReadAsStringAsync();
+        var updateResponse = await _httpClient.PutAsync(updateUrl, content);
 
-        //if (updateResponse.IsSuccessStatusCode)
-        //{
-        //    return Ok(new { message = "Bundle updated successfully", updateContent });
-        //}
-        //else
-        //{
-        //    return StatusCode((int)updateResponse.StatusCode, updateContent);
-        //}
+        //Console.WriteLine(updateResponse.Content.ReadAsStringAsync());
+        if (!updateResponse.IsSuccessStatusCode)
+        {
+            var errorContent = await updateResponse.Content.ReadAsStringAsync();
+            throw new Exception($"Failed to update {resourceType}/{resourceId}: {errorContent}");
+        }
+    });
+
+await Task.WhenAll(tasks);
+
+
+        return Ok(new { message = "All resources updated successfully", data = tasks});
     }
 
+
     [HttpGet("patient/{id}")]
-    public async Task<IActionResult> FetchSinglePatient(string id)
+    //[Authorize]
+    public async Task<IActionResult> FetchSinglePatient([FromRoute]string id)
     {
-        await AuthenticateAsync(); // Ensure authentication before request
+        //var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+        //_newhttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        await AuthenticateAsync();
         var searchUrl = $"{fhirBaseUrl}/Patient/?_id={id}&_revinclude=Observation:patient";
         //var searchUrl = $"{fhirBaseUrl}/Bundle/3bd37958-8785-4f53-9ba1-132b5aecc0d2";
 
@@ -131,7 +163,7 @@ public class FhirController : ControllerBase
                 return BadRequest($"Error parsing FHIR Bundle: {ex.Message}");
             }
         }
-
+        Console.WriteLine("Google Healthcare API Request Failed: " + response);
         return StatusCode((int)response.StatusCode, response.ReasonPhrase);
     }
 
@@ -156,10 +188,11 @@ public class FhirController : ControllerBase
     [HttpPost("bundle")]
     public async Task<IActionResult> CreateBundle(NewbornModel newborn)
     {
-        //Console.WriteLine("The newborn is:" + JsonConvert.SerializeObject(newborn));
+        Console.WriteLine("here i am");
 
         if (!ModelState.IsValid)
         {
+            Console.WriteLine("hereis the model state: " + JsonConvert.SerializeObject(ModelState));
             return BadRequest(ModelState);
         }
 
@@ -190,6 +223,7 @@ public class FhirController : ControllerBase
     }
 
     [HttpGet("patients")]
+    //[Authorize]
     public async Task<IActionResult> GetAllPatients()
     {
         await AuthenticateAsync(); // Ensure authentication before request

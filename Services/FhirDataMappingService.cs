@@ -19,7 +19,17 @@ namespace NeoHearts_API.Services
                 newborn.LastName = patientResource.Name.FirstOrDefault()?.Family;
                 newborn.Sex = patientResource.Gender?.ToString();
                 newborn.DOB = DateOnly.FromDateTime(DateTime.Parse(patientResource.BirthDate));
-
+                var ageExtension = patientResource.Extension.FirstOrDefault(ext => ext.Url == "http://hl7.org/fhir/StructureDefinition/patient-age");
+                if (ageExtension?.Value is Hl7.Fhir.Model.Integer ageValue)
+                {
+                    newborn.Age = (int)ageValue.Value;
+                }
+                // Extract Organization Reference (managingOrganization)
+                if (patientResource.ManagingOrganization?.Reference != null)
+                {
+                    var reference = patientResource.ManagingOrganization.Reference; // Example: "Organization/12345"
+                    newborn.OrganizationId = reference.Split('/').Last(); // Extract only the OrganizationId
+                }
             }
 
             // Extract Observations
@@ -110,6 +120,11 @@ namespace NeoHearts_API.Services
                         case "13213009": // Congenital heart disease
                             if (observationResource.Value is Hl7.Fhir.Model.FhirString Congenital)
                                 newborn.CHD_CCHD = Congenital.Value;
+                            break;
+
+                        case "232717009": // Congenital heart disease
+                            if (observationResource.Value is Hl7.Fhir.Model.FhirString Resuscitation)
+                                newborn.Resuscitation = Resuscitation.Value;
                             break;
 
                         case "16310003": // Prenatal ultrasound
