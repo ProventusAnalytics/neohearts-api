@@ -17,6 +17,7 @@ using Task = System.Threading.Tasks.Task;
 
 [ApiController]
 [Route("api/fhir")]
+[Authorize]
 public class FhirController : ControllerBase
 {
     private readonly string fhirBaseUrl;
@@ -126,7 +127,6 @@ await Task.WhenAll(tasks);
 
 
     [HttpGet("patient/{id}")]
-    //[Authorize]
     public async Task<IActionResult> FetchSinglePatient([FromRoute]string id)
     {
         //var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
@@ -223,7 +223,6 @@ await Task.WhenAll(tasks);
     }
 
     [HttpGet("patients")]
-    //[Authorize]
     public async Task<IActionResult> GetAllPatients()
     {
         await AuthenticateAsync(); // Ensure authentication before request
@@ -266,61 +265,3 @@ await Task.WhenAll(tasks);
         }
     }
 }
-
-
-// -------> EXAMPLE OF FETCHING A OBSERVATION RESOURCE AND PATIENT THEN COMBINING THEM INTO A SINGLE RESPONSE <-------
-
-//[HttpPut("patient/{patientId}")]
-//public async Task<IActionResult> UpdatePatient([FromRoute] string patientId)
-//{
-//    if (!ModelState.IsValid)
-//    {
-//        return BadRequest(ModelState);
-//    }
-
-//    await AuthenticateAsync(); // Ensure authentication before request
-
-//    try
-//    {
-//        // Fetch Patient resource
-//        var patientUrl = $"{fhirBaseUrl}/Patient/{patientId}";
-//        var patientResponse = await _httpClient.GetAsync(patientUrl);
-
-//        if (!patientResponse.IsSuccessStatusCode)
-//        {
-//            var errorContent = await patientResponse.Content.ReadAsStringAsync();
-//            return StatusCode((int)patientResponse.StatusCode, $"Failed to retrieve patient: {errorContent}");
-//        }
-
-//        var patientContent = await patientResponse.Content.ReadAsStringAsync();
-//        var patientResource = JsonConvert.DeserializeObject(patientContent);
-
-//        // Fetch Observation resources
-//        var observationUrl = $"{fhirBaseUrl}/Observation?patient=Patient/{patientId}";
-//        var observationResponse = await _httpClient.GetAsync(observationUrl);
-
-//        if (!observationResponse.IsSuccessStatusCode)
-//        {
-//            var errorContent = await observationResponse.Content.ReadAsStringAsync();
-//            return StatusCode((int)observationResponse.StatusCode, $"Failed to retrieve observations: {errorContent}");
-//        }
-
-//        var observationContent = await observationResponse.Content.ReadAsStringAsync();
-//        var observationBundle = JsonConvert.DeserializeObject(observationContent);
-
-//        // Combine results
-//        var result = new
-//        {
-//            Patient = patientResource,
-//            Observations = observationBundle
-//        };
-
-//        return Ok(result);
-//    }
-//    catch (Exception ex)
-//    {
-//        // Log the exception for debugging
-//        Console.WriteLine($"An error occurred: {ex.Message}");
-//        return StatusCode(500, "An internal error occurred while processing your request.");
-//    }
-//}

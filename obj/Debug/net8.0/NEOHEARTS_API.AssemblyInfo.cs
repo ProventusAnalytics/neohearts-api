@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NEOHEARTS_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fdc0779c0cd493934ee4c3bdb28d258b3c55a30")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77c35a35d297cc640fb43d7a36f7978812781453")]
 [assembly: System.Reflection.AssemblyProductAttribute("NEOHEARTS_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NEOHEARTS_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

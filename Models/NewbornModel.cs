@@ -10,7 +10,7 @@ namespace NeoHearts_API.Models
         [StringLength(50)]
         public string? LastName { get; set; }
         public int Age { get; set; }
-        [RegularExpression("^(Male|Female|Other)$", ErrorMessage = "Sex must be Male, Female, or Other.")]
+        [Required, RegularExpression("^(Male|Female|Other)$", ErrorMessage = "Sex must be Male, Female, or Other.")]
         public string? Sex { get; set; }
         [Required]
         public DateOnly DOB { get; set; }
@@ -75,7 +75,7 @@ namespace NeoHearts_API.Models
 
         [Required, StringLength(100)]
         public string? Checked_by { get; set; }
-        public string OrganizationId { get; set; }
+        public string? OrganizationId { get; set; }
         public string? OrganizationName { get; set; }
     }
 }

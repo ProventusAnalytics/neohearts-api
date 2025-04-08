@@ -22,13 +22,6 @@ builder.Services.AddCors(options =>
     });
 });
 Console.WriteLine(builder.Configuration["Auth0:Domain"]);
-//builder.Services
-//    .AddAuth0WebAppAuthentication(options => {
-//        options.Domain = builder.Configuration["Auth0:Domain"];
-//        options.ClientId = builder.Configuration["Auth0:ClientId"];
-//        options.ClientSecret = builder.Configuration["Auth0:ClientSecret"];
-//        options.Scope = "openid profile email"; // Add required scopes
-//    });
 
 builder.Services.AddHttpClient();
 
@@ -36,8 +29,8 @@ builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = builder.Configuration["Auth0:Domain"];  // Auth0 Domain (e.g., https://dev-yourapp.auth0.com)
-        options.Audience = builder.Configuration["Auth0:Audience"];  // Your Auth0 ClientId (used as the Audience in the JWT)
+        options.Authority = builder.Configuration["Auth0:Domain"];  
+        options.Audience = builder.Configuration["Auth0:Audience"];
         options.RequireHttpsMetadata = false;  // For development. Set to true in production!
     });
 
