@@ -54,25 +54,6 @@ public class FhirController : ControllerBase
         );
     }
 
-    private async System.Threading.Tasks.Task AuthenticateAsyncReq(HttpRequest request)
-    {
-        var token = request.Headers.Authorization.ToString().Replace("Bearer ", "");
-
-        if (string.IsNullOrEmpty(token))
-        {
-            throw new UnauthorizedAccessException("No token provided.");
-        }
-
-        // You can use the token for additional validation if needed or pass it to your API call
-        _newhttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-        Console.WriteLine("authorization pachi" + _newhttpClient.DefaultRequestHeaders.Authorization);
-
-        await System.Threading.Tasks.Task.CompletedTask;
-    }
-
-
-
     [HttpPut("patient/{patientId}")]
     public async Task<IActionResult> UpdatePatient([FromRoute] string patientId, [FromBody] NewbornModel newborn)
     {
