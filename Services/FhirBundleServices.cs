@@ -130,7 +130,7 @@ namespace NeoHearts_API.Services
                             new
                             {
                                 url = "http://hl7.org/fhir/StructureDefinition/patient-age",
-                                valueInteger = newborn.Age
+                                valueDecimal = newborn.Age
                             }
                         },
                          managingOrganization = new { reference = $"Organization/{newborn.OrganizationId}" }
@@ -386,7 +386,13 @@ namespace NeoHearts_API.Services
                                     },
                                     text = "1 minute Apgar score",
                                 },
-                                valueInteger = newborn.Apgar_Scores_1min,
+                                valueQuantity = new
+{
+    value = (decimal)newborn.Apgar_Scores_1min,
+    system = "http://unitsofmeasure.org",
+    code = "{score}",
+    unit = "score"
+},
                             },
                             new
                             {
@@ -403,7 +409,13 @@ namespace NeoHearts_API.Services
                                     },
                                     text = "5 minute Apgar score",
                                 },
-                                valueInteger = newborn.Apgar_Scores_5min,
+                                valueQuantity = new
+{
+    value = (decimal)newborn.Apgar_Scores_5min,
+    system = "http://unitsofmeasure.org",
+    code = "{score}",
+    unit = "score"
+},
                             },
                         },
                     },
@@ -455,96 +467,108 @@ namespace NeoHearts_API.Services
                         url = "Observation",
                     },
                 },
-                new FhirEntryModel
+               new FhirEntryModel
+{
+    fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
+    resource = new
+    {
+        resourceType = "Observation",
+        status = "final",
+        category = new[]
+        {
+            new
+            {
+                coding = new[]
                 {
-                    fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
-                    resource = new
+                    new
                     {
-                        resourceType = "Observation",
-                        status = "final",
-                        category = new[]
-                        {
-                            new
-                            {
-                                coding = new[]
-                                {
-                                    new
-                                    {
-                                        system = "http://terminology.hl7.org/CodeSystem/observation-category",
-                                        code = "vital-signs",
-                                        display = "Vital Signs",
-                                    },
-                                },
-                            },
-                        },
-                        code = new
-                        {
-                            coding = new[]
-                            {
-                                new
-                                {
-                                    system = "http://loinc.org",
-                                    code = "11977-6",
-                                    display = "Number of previous pregnancies (parity)",
-                                },
-                            },
-                            text = "Parity",
-                        },
-                        subject = new { reference = patientFullUrl },
-                        effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
-                        valueInteger = newborn.Parity,
-                    },
-                    request = new NeoHearts_API.Models.Request
-                    {
-                        method = "POST",
-                        url = "Observation",
+                        system = "http://terminology.hl7.org/CodeSystem/observation-category",
+                        code = "vital-signs",
+                        display = "Vital Signs",
                     },
                 },
-                new FhirEntryModel
+            },
+        },
+        code = new
+        {
+            coding = new[]
+            {
+                new
                 {
-                    fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
-                    resource = new
+                    system = "http://loinc.org",
+                    code = "11977-6",
+                    display = "Number of previous pregnancies (parity)",
+                },
+            },
+            text = "Parity",
+        },
+        subject = new { reference = patientFullUrl },
+        effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
+        valueQuantity = new
+        {
+            value = newborn.Parity,
+            system = "http://unitsofmeasure.org",
+            code = "{count}",
+            unit = "count"
+        },
+    },
+    request = new NeoHearts_API.Models.Request
+    {
+        method = "POST",
+        url = "Observation",
+    },
+},
+new FhirEntryModel
+{
+    fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
+    resource = new
+    {
+        resourceType = "Observation",
+        status = "final",
+        category = new[]
+        {
+            new
+            {
+                coding = new[]
+                {
+                    new
                     {
-                        resourceType = "Observation",
-                        status = "final",
-                        category = new[]
-                        {
-                            new
-                            {
-                                coding = new[]
-                                {
-                                    new
-                                    {
-                                        system = "http://terminology.hl7.org/CodeSystem/observation-category",
-                                        code = "vital-signs",
-                                        display = "Vital Signs",
-                                    },
-                                },
-                            },
-                        },
-                        code = new
-                        {
-                            coding = new[]
-                            {
-                                new
-                                {
-                                    system = "http://snomed.info/sct",
-                                    code = "416413003",
-                                    display = "Maternal age",
-                                },
-                            },
-                            text = "Maternal age",
-                        },
-                        subject = new { reference = patientFullUrl },
-                        effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
-                        valueInteger = newborn.Maternal_age,
-                    },
-                    request = new NeoHearts_API.Models.Request
-                    {
-                        method = "POST",
-                        url = "Observation",
+                        system = "http://terminology.hl7.org/CodeSystem/observation-category",
+                        code = "vital-signs",
+                        display = "Vital Signs",
                     },
                 },
+            },
+        },
+        code = new
+        {
+            coding = new[]
+            {
+                new
+                {
+                    system = "http://snomed.info/sct",
+                    code = "416413003",
+                    display = "Maternal age",
+                },
+            },
+            text = "Maternal age",
+        },
+        subject = new { reference = patientFullUrl },
+        effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
+        valueQuantity = new
+        {
+            value = newborn.Maternal_age,
+            system = "http://unitsofmeasure.org",
+            code = "a",
+            unit = "years"
+        },
+    },
+    request = new NeoHearts_API.Models.Request
+    {
+        method = "POST",
+        url = "Observation",
+    },
+},
                 new FhirEntryModel
                 {
                     fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
@@ -830,57 +854,6 @@ namespace NeoHearts_API.Services
                         url = "Observation",
                     },
                 },
-                //new FhirEntryModel
-                //{
-                //    fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
-                //    resource = new
-                //    {
-                //        resourceType = "Observation",
-                //        status = "final",
-                //        category = new[]
-                //        {
-                //            new
-                //            {
-                //                coding = new[]
-                //                {
-                //                    new
-                //                    {
-                //                        system = "http://terminology.hl7.org/CodeSystem/observation-category",
-                //                        code = "vital-signs",
-                //                        display = "Vital Signs",
-                //                    },
-                //                },
-                //            },
-                //        },
-                //        code = new
-                //        {
-                //            coding = new[]
-                //            {
-                //                new
-                //                {
-                //                    system = "http://loinc.org",
-                //                    code = "8310-5", // LOINC code for "Body temperature"
-                //                    display = "Body temperature",
-                //                },
-                //            },
-                //            text = "Body Temperature",
-                //        },
-                //        subject = new { reference = patientFullUrl }, // Replace with actual patient reference
-                //        effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
-                //        valueQuantity = new
-                //        {
-                //            value = newborn.T, // Set the T value here
-                //            unit = "°C",
-                //            system = "http://unitsofmeasure.org",
-                //            code = "Cel",
-                //        },
-                //    },
-                //    request = new NeoHearts_API.Models.Request
-                //    {
-                //        method = "POST",
-                //        url = "Observation",
-                //    },
-                //},
                 new FhirEntryModel
                 {
                     fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),

@@ -66,13 +66,13 @@ namespace NeoHearts_API.Services
                             {
                                 if (component.Code.Text == "1 minute Apgar score")
                                 {
-                                    if (component.Value is Hl7.Fhir.Model.Integer apgar1MinQuantity)
-                                        newborn.Apgar_Scores_1min = (int)apgar1MinQuantity.Value;
+                                    if (component.Value is Hl7.Fhir.Model.Quantity apgar1MinQuantity)
+                                        newborn.Apgar_Scores_1min = (decimal)apgar1MinQuantity.Value;
                                 }
                                 else if (component.Code.Text == "5 minute Apgar score")
                                 {
-                                    if (component.Value is Hl7.Fhir.Model.Integer apgar5MinQuantity)
-                                        newborn.Apgar_Scores_5min = (int)apgar5MinQuantity.Value;
+                                    if (component.Value is Hl7.Fhir.Model.Quantity apgar5MinQuantity)
+                                        newborn.Apgar_Scores_5min = (decimal)apgar5MinQuantity.Value;
                                 }
                             }
 
@@ -89,8 +89,8 @@ namespace NeoHearts_API.Services
                             break;
 
                         case "416413003": // Maternal age
-                            if (observationResource.Value is Hl7.Fhir.Model.Integer maternalAgeQuantity)
-                                newborn.Maternal_age = (int)maternalAgeQuantity.Value;
+                            if (observationResource.Value is Hl7.Fhir.Model.Quantity maternalAgeQuantity)
+                                newborn.Maternal_age = (decimal)maternalAgeQuantity.Value;
                             break;
 
                         case "56876-6":
@@ -134,8 +134,8 @@ namespace NeoHearts_API.Services
 
 
                         case "11977-6": // Congenital heart disease 
-                            if (observationResource.Value is Hl7.Fhir.Model.Integer parityQuantity)
-                                newborn.Parity = (int)parityQuantity.Value;
+                            if (observationResource.Value is Hl7.Fhir.Model.Quantity parityQuantity)
+                                newborn.Parity = (decimal)parityQuantity.Value;
                             break;
 
                         case "29308-4": // Extracardiac Diagnosis
@@ -253,9 +253,9 @@ namespace NeoHearts_API.Services
                             foreach (var component in oxygenComponents)
                             {
                                 if (component.Code.Text == "Oxygen saturation at Right Upper Arm" && component.Value is Hl7.Fhir.Model.Quantity rightUpperArmQuantity)
-                                    newborn.Right_upper_arm = (int)rightUpperArmQuantity.Value;
+                                    newborn.Right_upper_arm = (decimal)rightUpperArmQuantity.Value;
                                 else if (component.Code.Text == "Oxygen saturation at Right Leg" && component.Value is Hl7.Fhir.Model.Quantity rightLegQuantity)
-                                    newborn.Right_leg = (int)rightLegQuantity.Value;
+                                    newborn.Right_leg = (decimal)rightLegQuantity.Value;
                             }
                             break;
 

@@ -26,14 +26,14 @@ namespace NeoHearts_API.Services
                 var ageExtension = patientResource.Extension.FirstOrDefault(ext => ext.Url == "http://hl7.org/fhir/StructureDefinition/patient-age");
                 if (ageExtension != null)
                 {
-                    ageExtension.Value = new Hl7.Fhir.Model.Integer(newborn.Age);
+                    ageExtension.Value = new Hl7.Fhir.Model.FhirDecimal(newborn.Age);
                 }
                 else
                 {
                     patientResource.Extension.Add(new Extension
                     {
                         Url = "http://hl7.org/fhir/StructureDefinition/patient-age",
-                        Value = new Hl7.Fhir.Model.Integer(newborn.Age)
+                        Value = new Hl7.Fhir.Model.FhirDecimal(newborn.Age)
                     });
                 }
                 // Update or add the managing organization reference
@@ -78,11 +78,11 @@ namespace NeoHearts_API.Services
                             {
                                 if (component.Code.Text == "1 minute Apgar score")
                                 {
-                                    component.Value = new Hl7.Fhir.Model.Integer(newborn.Apgar_Scores_1min);
+                                    component.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Apgar_Scores_1min , "score");
                                 }
                                 else if (component.Code.Text == "5 minute Apgar score")
                                 {
-                                    component.Value = new Hl7.Fhir.Model.Integer(newborn.Apgar_Scores_5min);
+                                    component.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Apgar_Scores_5min, "score");
                                 }
                             }
                             break;
@@ -105,7 +105,7 @@ namespace NeoHearts_API.Services
                             break;
 
                         case "416413003": // Maternal age
-                            observationResource.Value = new Hl7.Fhir.Model.Integer(newborn.Maternal_age);
+                            observationResource.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Maternal_age, "years");
                             break;
 
                         case "56876-6": // Reflexes
@@ -147,7 +147,7 @@ namespace NeoHearts_API.Services
                             break;
 
                         case "11977-6": // Parity
-                            observationResource.Value = new Hl7.Fhir.Model.Integer(newborn.Parity);
+                            observationResource.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Parity, "count");
                             break;
 
                         case "29308-4": // Extracardiac Diagnosis
