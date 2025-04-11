@@ -1,3 +1,5 @@
+using Auth0.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using NeoHearts_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,30 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IFhirBundleService, FhirBundleServices>();
+builder.Services.AddScoped<IFhirDataMappingService, FhirDataMappingService>();
+builder.Services.AddScoped<IFhirUpdateService, FhirUpdateService>();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:5173")
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+Console.WriteLine(builder.Configuration["Auth0:Domain"]);
+
+builder.Services.AddHttpClient();
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = builder.Configuration["Auth0:Domain"];  
+        options.Audience = builder.Configuration["Auth0:Audience"];
+        options.RequireHttpsMetadata = false;  // For development. Set to true in production!
+    });
 
 var app = builder.Build();
 
@@ -17,6 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
