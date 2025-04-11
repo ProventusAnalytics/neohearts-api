@@ -1,8 +1,15 @@
 using Auth0.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using NeoHearts_API.Services;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load from .env
+DotNetEnv.Env.Load();
+
+builder.Configuration
+    .AddEnvironmentVariables(); // Allow access using Environment.GetEnvironmentVariable
 
 // sets up routing for API endpoints using attributes like [Route] and [HttpGet]
 builder.Services.AddControllers();
@@ -21,7 +28,6 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
     });
 });
-Console.WriteLine(builder.Configuration["Auth0:Domain"]);
 
 builder.Services.AddHttpClient();
 
@@ -29,9 +35,9 @@ builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = builder.Configuration["Auth0:Domain"];  
-        options.Audience = builder.Configuration["Auth0:Audience"];
-        options.RequireHttpsMetadata = false;  // For development. Set to true in production!
+        options.Authority = Environment.GetEnvironmentVariable("AUTH0_DOMAIN");
+        options.Audience = Environment.GetEnvironmentVariable("AUTH0_AUDIENCE");
+        options.RequireHttpsMetadata = false;  // For dev only
     });
 
 var app = builder.Build();
@@ -50,3 +56,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+//things to do
+// 1. Add units to frontend pdf format
+// 2. Create env file
