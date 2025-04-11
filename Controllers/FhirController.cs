@@ -72,7 +72,6 @@ public class FhirController : ControllerBase
         {
             return StatusCode((int)searchResponse.StatusCode, "Failed to retrieve bundle: " + bundleContent);
         }
-        Console.WriteLine("here1");
 
         var parser = new FhirJsonParser();
         var bundle = parser.Parse<Bundle>(bundleContent);
@@ -110,8 +109,6 @@ await Task.WhenAll(tasks);
     [HttpGet("patient/{id}")]
     public async Task<IActionResult> FetchSinglePatient([FromRoute]string id)
     {
-        //var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-        //_newhttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
         await AuthenticateAsync();
         var searchUrl = $"{fhirBaseUrl}/Patient/?_id={id}&_revinclude=Observation:patient";
@@ -169,7 +166,6 @@ await Task.WhenAll(tasks);
     [HttpPost("bundle")]
     public async Task<IActionResult> CreateBundle(NewbornModel newborn)
     {
-        Console.WriteLine("here i am");
 
         if (!ModelState.IsValid)
         {
@@ -184,6 +180,7 @@ await Task.WhenAll(tasks);
         // Convert C# object to JSON string
         var jsonContent = JsonConvert.SerializeObject(bundleData);
         Console.WriteLine();
+        Console.WriteLine(jsonContent);
         var content = new StringContent(jsonContent, Encoding.UTF8, "application/fhir+json");
 
         // Send POST request to FHIR API
