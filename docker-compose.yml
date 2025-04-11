@@ -1,0 +1,18 @@
+services:
+  neohearts-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5177:80"
+    # restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # Add any other environment variables your API needs below
+      # - ConnectionStrings__DefaultConnection=your_connection_string
+    networks:
+      - neohearts-network
+
+networks:
+  neohearts-network:
+    driver: bridge
