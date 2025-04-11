@@ -7,7 +7,7 @@ namespace NeoHearts_API.Models
     {
 #pragma warning disable IDE1006 // Naming Styles  :: disables uppercase name warnings
         public string? fullUrl { get; set; }  // Uppercase and Required
-        public required object resource { get; set; }  // Uppercase and Required
+        public required dynamic resource { get; set; }  // Uppercase and Required
         public required Request request { get; set; }  // Uppercase and Required
     }
 
