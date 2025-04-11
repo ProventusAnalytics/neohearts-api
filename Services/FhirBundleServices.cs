@@ -130,7 +130,13 @@ namespace NeoHearts_API.Services
                             new
                             {
                                 url = "http://hl7.org/fhir/StructureDefinition/patient-age",
-                                valueDecimal = newborn.Age
+                               valueQuantity = new
+                        {
+                            value = newborn.Age, // Use the relevant field from the newborn model
+                            unit = "hours", // Modify unit if necessary
+                            system = "http://unitsofmeasure.org",
+                            code = "h",
+                        },
                             }
                         },
                          managingOrganization = new { reference = $"Organization/{newborn.OrganizationId}" }

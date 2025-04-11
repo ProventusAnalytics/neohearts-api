@@ -26,14 +26,14 @@ namespace NeoHearts_API.Services
                 var ageExtension = patientResource.Extension.FirstOrDefault(ext => ext.Url == "http://hl7.org/fhir/StructureDefinition/patient-age");
                 if (ageExtension != null)
                 {
-                    ageExtension.Value = new Hl7.Fhir.Model.FhirDecimal(newborn.Age);
+                    ageExtension.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Age, "hours");
                 }
                 else
                 {
                     patientResource.Extension.Add(new Extension
                     {
                         Url = "http://hl7.org/fhir/StructureDefinition/patient-age",
-                        Value = new Hl7.Fhir.Model.FhirDecimal(newborn.Age)
+                        Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Age, "hours")
                     });
                 }
                 // Update or add the managing organization reference
@@ -88,7 +88,7 @@ namespace NeoHearts_API.Services
                             break;
 
                         case "11884-4": // Gestational age
-                            observationResource.Value = new Hl7.Fhir.Model.Quantity((int)newborn.Gestational_Age, "weeks");
+                            observationResource.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Gestational_Age, "weeks");
                             break;
 
                         case "236973005": // Mode of delivery
