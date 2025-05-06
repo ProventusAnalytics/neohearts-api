@@ -23,7 +23,6 @@ public class FhirController : ControllerBase
     private readonly string fhirBaseUrl;
     private readonly HttpClient _httpClient;
     private readonly HttpClient _newhttpClient;
-
     private readonly IFhirBundleService _fhirBundleService;
     private readonly IFhirDataMappingService _fhirDataMappingService;
     private readonly IFhirUpdateService _fhirUpdateService;
@@ -99,15 +98,15 @@ public class FhirController : ControllerBase
         }
     });
 
-await Task.WhenAll(tasks);
+        await Task.WhenAll(tasks);
 
 
-        return Ok(new { message = "All resources updated successfully", data = tasks});
+        return Ok(new { message = "All resources updated successfully", data = tasks });
     }
 
 
     [HttpGet("patient/{id}")]
-    public async Task<IActionResult> FetchSinglePatient([FromRoute]string id)
+    public async Task<IActionResult> FetchSinglePatient([FromRoute] string id)
     {
 
         await AuthenticateAsync();
@@ -223,7 +222,9 @@ await Task.WhenAll(tasks);
                 var patientInfo = new
                 {
                     patient.Id,
-                    Name = string.Join(" ", patient.Name?[0].Given) + " " + patient.Name?[0].Family,
+                    Name = patient.Name != null && patient.Name.Count > 0
+                    ? string.Join(" ", patient.Name[0].Given) + " " + patient.Name[0].Family
+                    : string.Empty,
                     patient.BirthDate,
                     patient.Gender
 
