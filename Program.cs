@@ -37,7 +37,7 @@ builder.Services
     {
         options.Authority = Environment.GetEnvironmentVariable("AUTH0_DOMAIN");
         options.Audience = Environment.GetEnvironmentVariable("AUTH0_AUDIENCE");
-        options.RequireHttpsMetadata = false;  // For dev only
+        options.RequireHttpsMetadata = true;  // For dev only
     });
 
 var app = builder.Build();
@@ -56,8 +56,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
-//things to do
-// 1. Add units to frontend pdf format
-// 2. Create env file
