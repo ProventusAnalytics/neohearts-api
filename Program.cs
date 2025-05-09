@@ -1,12 +1,18 @@
-using Auth0.AspNetCore.Authentication;
-using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using NeoHearts_API.Services;
+using Newtonsoft.Json.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
+DotNetEnv.Env.Load();
+
+// Get Auth0 secrets from AWS
+string secretJson = await SecretsManagerHelper.GetSecretAsync("Neohearts-auth0");
+var secretData = JObject.Parse(secretJson);
+
+string auth0Domain = secretData["AUTH0_DOMAIN"]?.ToString();
+string auth0Audience = secretData["AUTH0_AUDIENCE"]?.ToString();
 
 // Load from .env
-DotNetEnv.Env.Load();
 
 builder.Configuration.AddEnvironmentVariables(); // Allow access using Environment.GetEnvironmentVariable
 
@@ -35,9 +41,9 @@ builder
     .Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = Environment.GetEnvironmentVariable("AUTH0_DOMAIN");
-        options.Audience = Environment.GetEnvironmentVariable("AUTH0_AUDIENCE");
-        options.RequireHttpsMetadata = true; // For dev only
+        options.Authority = auth0Domain;
+        options.Audience = auth0Audience;
+        options.RequireHttpsMetadata = true;
     });
 
 var app = builder.Build();
