@@ -20,9 +20,9 @@ namespace NeoHearts_API.Services
                 newborn.Sex = patientResource.Gender?.ToString();
                 newborn.DOB = DateOnly.FromDateTime(DateTime.Parse(patientResource.BirthDate));
                 var ageExtension = patientResource.Extension.FirstOrDefault(ext => ext.Url == "http://hl7.org/fhir/StructureDefinition/patient-age");
-                if (ageExtension?.Value is Hl7.Fhir.Model.Integer ageValue)
+                if (ageExtension?.Value is Hl7.Fhir.Model.Quantity ageValue)
                 {
-                    newborn.Age = (int)ageValue.Value;
+                    newborn.Age = (decimal)ageValue.Value;
                 }
                 // Extract Organization Reference (managingOrganization)
                 if (patientResource.ManagingOrganization?.Reference != null)
@@ -42,12 +42,12 @@ namespace NeoHearts_API.Services
                     {
                         case "40443-4": // Heart rate
                             if (observationResource.Value is Hl7.Fhir.Model.Quantity heartRateQuantity)
-                                newborn.HR = (int)heartRateQuantity.Value;
+                                newborn.HR = (decimal)heartRateQuantity.Value;
                             break;
 
                         case "9303-9": // Respiratory rate
                             if (observationResource.Value is Hl7.Fhir.Model.Quantity respiratoryRateQuantity)
-                                newborn.RR = (int)respiratoryRateQuantity.Value;
+                                newborn.RR = (decimal)respiratoryRateQuantity.Value;
                             break;
 
                         case "8310-5": // Body temperature
@@ -80,7 +80,7 @@ namespace NeoHearts_API.Services
 
                         case "11884-4": // Gestational age
                             if (observationResource.Value is Hl7.Fhir.Model.Quantity gestationalAgeQuantity)
-                                newborn.Gestational_Age = (int)gestationalAgeQuantity.Value;
+                                newborn.Gestational_Age = (decimal)gestationalAgeQuantity.Value;
                             break;
 
                         case "236973005": // Mode of delivery
