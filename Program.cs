@@ -12,8 +12,6 @@ var secretData = JObject.Parse(secretJson);
 string auth0Domain = secretData["AUTH0_DOMAIN"]?.ToString();
 string auth0Audience = secretData["AUTH0_AUDIENCE"]?.ToString();
 
-// Load from .env
-
 builder.Configuration.AddEnvironmentVariables(); // Allow access using Environment.GetEnvironmentVariable
 
 // sets up routing for API endpoints using attributes like [Route] and [HttpGet]
@@ -29,7 +27,11 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(builder =>
     {
         builder
-            .WithOrigins("https://main.d2m38mqvlgl9jn.amplifyapp.com", "http://localhost:3000")
+            .WithOrigins(
+                Environment.GetEnvironmentVariable("FRONTEND_URL1"),
+                Environment.GetEnvironmentVariable("FRONTEND_URL2"),
+                "http://localhost:3000"
+            )
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
