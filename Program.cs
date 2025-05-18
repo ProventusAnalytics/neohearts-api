@@ -28,11 +28,15 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(builder =>
     {
         builder
+<<<<<<< Updated upstream
             .WithOrigins(
                 Environment.GetEnvironmentVariable("FRONTEND_URL1"),
                 Environment.GetEnvironmentVariable("FRONTEND_URL2"),
                 "http://localhost:3000"
             )
+=======
+            .WithOrigins("https://main.d2m38mqvlgl9jn.amplifyapp.com", "http://localhost:3000", "https://neohearts.org", "https://www.neohearts.org/")
+>>>>>>> Stashed changes
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
