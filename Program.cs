@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
 using NeoHearts_API.Services;
 using Newtonsoft.Json.Linq;
 
@@ -56,11 +57,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+        var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+        logger.LogError(exception, "Global error: {Message}", exception?.Message);
+        await context.Response.WriteAsync("An error occurred.");
+    });
+});
 app.Run();
