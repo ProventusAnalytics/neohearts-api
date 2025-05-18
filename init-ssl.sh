@@ -3,8 +3,12 @@
 # Script to initialize the Let's Encrypt SSL certificates
 
 # Replace these variables with your actual domain and email
-DOMAIN="api.neohearts.org"
-EMAIL="kansakar.vivek@gmail.com"
+if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+else
+    echo ".env file not found!"
+    exit 1
+fi
 
 # Create required directories
 mkdir -p ./nginx/conf
