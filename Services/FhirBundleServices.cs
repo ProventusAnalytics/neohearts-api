@@ -110,6 +110,7 @@ namespace NeoHearts_API.Services
                     resource = new
                     {
                         resourceType = "Patient",
+                        active = true,
                         identifier = new[]
                         {
                             new
