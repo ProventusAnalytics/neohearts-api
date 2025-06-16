@@ -21,7 +21,7 @@ namespace NeoHearts_API.Services
                 patientResource.Name = new List<Hl7.Fhir.Model.HumanName> { name };
                 patientResource.Gender = (AdministrativeGender)Enum.Parse(typeof(AdministrativeGender), newborn.Sex);
                 patientResource.BirthDate = newborn.DOB.ToString("yyyy-MM-dd");
-
+                patientResource.Active = newborn.Active;
                 // Update age extension if it exists
                 var ageExtension = patientResource.Extension.FirstOrDefault(ext => ext.Url == "http://hl7.org/fhir/StructureDefinition/patient-age");
                 if (ageExtension != null)

@@ -17,6 +17,7 @@ namespace NeoHearts_API.Models
         public decimal? Gestational_Age { get; set; }
         //[Required, RegularExpression("^(SVD|VAD|LSCS|Other)$", ErrorMessage = "Mode of Delivery must be SVD, VAD, LSCS, or Other.")]
         public string? Mode_of_Delivery { get; set; }
+        public bool Active { get; set; } = true;
         public float? Birth_Weight { get; set; }
         public decimal? Apgar_Scores_1min { get; set; }
         public decimal? Apgar_Scores_5min { get; set; }

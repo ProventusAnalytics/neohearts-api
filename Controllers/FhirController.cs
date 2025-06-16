@@ -96,7 +96,6 @@ public class FhirController : ControllerBase
 
             var updateResponse = await _httpClient.PutAsync(updateUrl, content);
 
-            //Console.WriteLine(updateResponse.Content.ReadAsStringAsync());
             if (!updateResponse.IsSuccessStatusCode)
             {
                 var errorContent = await updateResponse.Content.ReadAsStringAsync();
@@ -156,8 +155,41 @@ public class FhirController : ControllerBase
     {
         try
         {
-            var res = await _httpClient.DeleteAsync($"{fhirBaseUrl}/Patient/{id}");
-            return Ok(new { message = "Deleted", res });
+            await AuthenticateAsync(); // Ensure authentication before request
+
+            // Step 1: Retrieve the existing Bundle
+            var searchUrl = $"{fhirBaseUrl}/Patient/?_id={id}";
+            var searchResponse = await _httpClient.GetAsync(searchUrl);
+            var bundleContent = await searchResponse.Content.ReadAsStringAsync();
+
+            if (!searchResponse.IsSuccessStatusCode)
+            {
+                return StatusCode((int)searchResponse.StatusCode, "Failed to find patient for deletion!");
+            }
+
+            var parser = new FhirJsonParser();
+            var bundle = parser.Parse<Bundle>(bundleContent);
+
+            var patient = bundle.Entry[0].Resource as Hl7.Fhir.Model.Patient;
+            if (patient == null)
+            {
+                return NotFound("Patient not found.");
+            }
+            patient.Active = false;
+
+            var serializer = new FhirJsonSerializer();
+            var updatedPatientJson = serializer.SerializeToString(patient);
+            var content = new StringContent(updatedPatientJson, Encoding.UTF8, "application/fhir+json");
+
+            var updateUrl = $"{fhirBaseUrl}/Patient/{id}";
+            var updateResponse = await _httpClient.PutAsync(updateUrl, content);
+
+            if (!updateResponse.IsSuccessStatusCode)
+            {
+                return StatusCode((int)updateResponse.StatusCode, "Failed to delete patient by updating status!");
+            }
+
+            return Ok("Patient deactivated successfully.");
         }
         catch (Exception ex)
         {
@@ -166,10 +198,7 @@ public class FhirController : ControllerBase
         }
     }
 
-
-
     // Method to post the newborn information through a bundle in FHIR store in Google Healthcare API
-
     [HttpPost("bundle")]
     public async Task<IActionResult> CreateBundle(NewbornModel newborn)
     {
@@ -188,7 +217,6 @@ public class FhirController : ControllerBase
             // Convert C# object to JSON string
             var jsonContent = JsonConvert.SerializeObject(bundleData);
             Console.WriteLine();
-            Console.WriteLine(jsonContent);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/fhir+json");
 
             // Send POST request to FHIR API
@@ -212,9 +240,8 @@ public class FhirController : ControllerBase
         {
             await AuthenticateAsync(); // Ensure authentication before request
 
-            var response = await _httpClient.GetAsync($"{fhirBaseUrl}/Patient");
+            var response = await _httpClient.GetAsync($"{fhirBaseUrl}/Patient?active=true");
             var resContent = await response.Content.ReadAsStringAsync();
-            //Console.WriteLine("The response is:" + resContent);
             var bundle = JsonConvert.DeserializeObject<FhirBundle<Patient>>(resContent);
             if (bundle?.Entry == null || bundle.Entry.Count == 0)
             {
