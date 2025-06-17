@@ -71,7 +71,7 @@ namespace NeoHearts_API.Controllers
 
             if (res.IsSuccessStatusCode)
             {
-                Console.WriteLine("Organization creaed successful");
+                Console.WriteLine("Organization created successful");
                 return Ok(new { message = "Organization created successfully", resContent });
             }
             else
