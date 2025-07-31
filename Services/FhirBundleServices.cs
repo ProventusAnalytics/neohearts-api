@@ -232,13 +232,7 @@ namespace NeoHearts_API.Services
                         },
                         subject = new { reference = patientFullUrl }, // Replace with actual patient reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
-                        valueQuantity = new
-                        {
-                            value = newborn.Gestational_Age, // Use the relevant field from the newborn model
-                            unit = "weeks", // Modify unit if necessary
-                            system = "http://unitsofmeasure.org",
-                            code = "wk",
-                        },
+                        valueString = newborn.Gestational_Age
                     },
                     request = new NeoHearts_API.Models.Request
                     {
@@ -394,12 +388,12 @@ namespace NeoHearts_API.Services
                                     text = "1 minute Apgar score",
                                 },
                                 valueQuantity = new
-{
-    value = (decimal)newborn.Apgar_Scores_1min,
-    system = "http://unitsofmeasure.org",
-    code = "{score}",
-    unit = "score"
-},
+                            {
+                                value = (decimal)newborn.Apgar_Scores_1min,
+                                system = "http://unitsofmeasure.org",
+                                code = "{score}",
+                                unit = "score"
+                            },
                             },
                             new
                             {
@@ -417,12 +411,35 @@ namespace NeoHearts_API.Services
                                     text = "5 minute Apgar score",
                                 },
                                 valueQuantity = new
-{
-    value = (decimal)newborn.Apgar_Scores_5min,
-    system = "http://unitsofmeasure.org",
-    code = "{score}",
-    unit = "score"
-},
+                            {
+                                value = (decimal)newborn.Apgar_Scores_5min,
+                                system = "http://unitsofmeasure.org",
+                                code = "{score}",
+                                unit = "score"
+                            },
+                            },
+                            new
+                            {
+                                code = new
+                                {
+                                    coding = new[]
+                                    {
+                                        new
+                                        {
+                                            system = "http://loinc.org",
+                                            code = "9272-6",
+                                            display = "10 minute Apgar score",
+                                        },
+                                    },
+                                    text = "10 minute Apgar score",
+                                },
+                                valueQuantity = new
+                            {
+                                value = (decimal)newborn.Apgar_Scores_10min,
+                                system = "http://unitsofmeasure.org",
+                                code = "{score}",
+                                unit = "score"
+                            },
                             },
                         },
                     },
@@ -467,6 +484,13 @@ namespace NeoHearts_API.Services
                         subject = new { reference = patientFullUrl }, // Use patientFullUrl for reference
                         effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Required field
                         valueString = newborn.Resuscitation, // Set based on NR/BMV/CPR/Adr from form input
+                        note = !string.IsNullOrEmpty(newborn.ResuscitationComment) ? new[]
+                        {
+                            new
+                            {
+                                text = newborn.ResuscitationComment
+                            }
+                        } : null,
                     },
                     request = new NeoHearts_API.Models.Request
                     {
@@ -568,6 +592,57 @@ new FhirEntryModel
             system = "http://unitsofmeasure.org",
             code = "a",
             unit = "years"
+        },
+    },
+    request = new NeoHearts_API.Models.Request
+    {
+        method = "POST",
+        url = "Observation",
+    },
+},
+new FhirEntryModel
+{
+    fullUrl = "urn:uuid:" + Guid.NewGuid().ToString(),
+    resource = new
+    {
+        resourceType = "Observation",
+        status = "final",
+        category = new[]
+        {
+            new
+            {
+                coding = new[]
+                {
+                    new
+                    {
+                        system = "http://terminology.hl7.org/CodeSystem/observation-category",
+                        code = "vital-signs",
+                        display = "Vital Signs",
+                    },
+                },
+            },
+        },
+        code = new
+        {
+            coding = new[]
+            {
+                new
+                {
+                    system = "http://snomed.info/sct",
+                    code = "11996000",
+                    display = "Gravidity",
+                },
+            },
+            text = "Gravida",
+        },
+        subject = new { reference = patientFullUrl },
+        effectiveDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+        valueQuantity = new
+        {
+            value = newborn.Gravida,
+            system = "http://unitsofmeasure.org",
+            code = "{count}",
+            unit = "count"
         },
     },
     request = new NeoHearts_API.Models.Request
@@ -2397,6 +2472,13 @@ new FhirEntryModel
                                 valueString = newborn.Checked_by,
                             },
                         },
+                        note = !string.IsNullOrEmpty(newborn.TestsComment) ? new[]
+                        {
+                            new
+                            {
+                                text = newborn.TestsComment
+                            }
+                        } : null,
                     },
                     request = new NeoHearts_API.Models.Request
                     {

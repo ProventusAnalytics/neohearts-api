@@ -74,13 +74,18 @@ namespace NeoHearts_API.Services
                                     if (component.Value is Hl7.Fhir.Model.Quantity apgar5MinQuantity)
                                         newborn.Apgar_Scores_5min = (decimal)apgar5MinQuantity.Value;
                                 }
+                                else if (component.Code.Text == "10 minute Apgar score")
+                                {
+                                    if (component.Value is Hl7.Fhir.Model.Quantity apgar10MinQuantity)
+                                        newborn.Apgar_Scores_10min = (decimal)apgar10MinQuantity.Value;
+                                }
                             }
 
                             break;
 
                         case "11884-4": // Gestational age
-                            if (observationResource.Value is Hl7.Fhir.Model.Quantity gestationalAgeQuantity)
-                                newborn.Gestational_Age = (decimal)gestationalAgeQuantity.Value;
+                            if (observationResource.Value is Hl7.Fhir.Model.FhirString gestationalAgeQuantity)
+                                newborn.Gestational_Age = (string)gestationalAgeQuantity.Value;
                             break;
 
                         case "236973005": // Mode of delivery
@@ -122,9 +127,15 @@ namespace NeoHearts_API.Services
                                 newborn.CHD_CCHD = Congenital.Value;
                             break;
 
-                        case "232717009": // Congenital heart disease
+                        case "232717009":
                             if (observationResource.Value is Hl7.Fhir.Model.FhirString Resuscitation)
                                 newborn.Resuscitation = Resuscitation.Value;
+
+                            // Extract resuscitation comment from note field
+                            if (observationResource.Note != null && observationResource.Note.Any())
+                            {
+                                newborn.ResuscitationComment = observationResource.Note.FirstOrDefault()?.Text;
+                            }
                             break;
 
                         case "16310003": // Prenatal ultrasound
@@ -133,9 +144,14 @@ namespace NeoHearts_API.Services
                             break;
 
 
-                        case "11977-6": // Congenital heart disease 
+                        case "11977-6": // Parity
                             if (observationResource.Value is Hl7.Fhir.Model.Quantity parityQuantity)
                                 newborn.Parity = (decimal)parityQuantity.Value;
+                            break;
+
+                        case "11996000": // Gravida
+                            if (observationResource.Value is Hl7.Fhir.Model.Quantity gravidaQuantity)
+                                newborn.Gravida = (decimal)gravidaQuantity.Value;
                             break;
 
                         case "29308-4": // Extracardiac Diagnosis
@@ -343,6 +359,12 @@ namespace NeoHearts_API.Services
                                             newborn.Checked_by = checkedByCodeableConcept.Value;
                                         break;
                                 }
+                            }
+
+                            // Process note field for TestsComment
+                            if (observationResource.Note != null && observationResource.Note.Any())
+                            {
+                                newborn.TestsComment = observationResource.Note.FirstOrDefault()?.Text;
                             }
                             break;
                     }
