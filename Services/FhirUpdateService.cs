@@ -78,17 +78,21 @@ namespace NeoHearts_API.Services
                             {
                                 if (component.Code.Text == "1 minute Apgar score")
                                 {
-                                    component.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Apgar_Scores_1min , "score");
+                                    component.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Apgar_Scores_1min, "score");
                                 }
                                 else if (component.Code.Text == "5 minute Apgar score")
                                 {
                                     component.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Apgar_Scores_5min, "score");
                                 }
+                                else if (component.Code.Text == "10 minute Apgar score")
+                                {
+                                    component.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Apgar_Scores_10min, "score");
+                                }
                             }
                             break;
 
                         case "11884-4": // Gestational age
-                            observationResource.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Gestational_Age, "weeks");
+                            observationResource.Value = new FhirString((string)newborn.Gestational_Age);
                             break;
 
                         case "236973005": // Mode of delivery
@@ -140,6 +144,27 @@ namespace NeoHearts_API.Services
 
                         case "232717009": // Resuscitation
                             observationResource.Value = new FhirString(newborn.Resuscitation);
+
+                            // Update or add resuscitation comment in note field
+                            if (!string.IsNullOrEmpty(newborn.ResuscitationComment))
+                            {
+                                if (observationResource.Note == null)
+                                {
+                                    observationResource.Note = new List<Annotation>();
+                                }
+
+                                // Clear existing notes and add the new comment
+                                observationResource.Note.Clear();
+                                observationResource.Note.Add(new Annotation
+                                {
+                                    Text = newborn.ResuscitationComment
+                                });
+                            }
+                            else
+                            {
+                                // Clear notes if no comment is provided
+                                observationResource.Note?.Clear();
+                            }
                             break;
 
                         case "16310003": // Prenatal ultrasound
@@ -148,6 +173,10 @@ namespace NeoHearts_API.Services
 
                         case "11977-6": // Parity
                             observationResource.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Parity, "count");
+                            break;
+
+                        case "11996000": // Gravida
+                            observationResource.Value = new Hl7.Fhir.Model.Quantity((decimal)newborn.Gravida, "count");
                             break;
 
                         case "29308-4": // Extracardiac Diagnosis
@@ -346,6 +375,19 @@ namespace NeoHearts_API.Services
                                         component.Value = new FhirString(newborn.Checked_by);
                                         break;
                                 }
+                            }
+
+                            // Update note field for TestsComment
+                            if (!string.IsNullOrEmpty(newborn.TestsComment))
+                            {
+                                observationResource.Note = new List<Annotation>
+                                {
+                                    new Annotation { Text = newborn.TestsComment }
+                                };
+                            }
+                            else
+                            {
+                                observationResource.Note = null;
                             }
                             break;
                     }

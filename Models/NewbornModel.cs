@@ -14,15 +14,18 @@ namespace NeoHearts_API.Models
         public string? Sex { get; set; }
         [Required]
         public DateOnly DOB { get; set; }
-        public decimal? Gestational_Age { get; set; }
+        public string? Gestational_Age { get; set; }
         //[Required, RegularExpression("^(SVD|VAD|LSCS|Other)$", ErrorMessage = "Mode of Delivery must be SVD, VAD, LSCS, or Other.")]
         public string? Mode_of_Delivery { get; set; }
         public bool Active { get; set; } = true;
         public float? Birth_Weight { get; set; }
         public decimal? Apgar_Scores_1min { get; set; }
         public decimal? Apgar_Scores_5min { get; set; }
+        public decimal? Apgar_Scores_10min { get; set; }
         public string? Resuscitation { get; set; }
+        public string? ResuscitationComment { get; set; }
         public decimal? Maternal_age { get; set; }
+        public decimal? Gravida { get; set; }
         public decimal? Parity { get; set; }
         public string? Prenatal_ultrasound { get; set; }
         public string? CHD_CCHD { get; set; }
@@ -71,6 +74,7 @@ namespace NeoHearts_API.Models
         public bool CXR { get; set; } = false;
         public bool ECG { get; set; } = false;
         public bool Ultrasound { get; set; } = false;
+        public string? TestsComment { get; set; }
 
         public string? Follow_up { get; set; }
 
