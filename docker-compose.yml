@@ -2,7 +2,7 @@ services:
   neohearts-api:
     build:
       context: ./server
-      dockerfile: ./server/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "5177:5177"
     # restart: always
