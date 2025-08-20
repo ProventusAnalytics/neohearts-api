@@ -29,9 +29,9 @@ builder.Services.AddCors(options =>
     {
         builder
             .WithOrigins(
-                Environment.GetEnvironmentVariable("FRONTEND_URL1"),
-                Environment.GetEnvironmentVariable("FRONTEND_URL2")
-                // "http://localhost:3000"
+                // Environment.GetEnvironmentVariable("FRONTEND_URL1"),
+                // Environment.GetEnvironmentVariable("FRONTEND_URL2"),
+                "http://localhost:3000"
             )
             .AllowAnyMethod()
             .AllowAnyHeader();
