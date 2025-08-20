@@ -1,13 +1,13 @@
 services:
   neohearts-api:
     build:
-      context: ./server/neohearts-api 
-      dockerfile: /home/ubuntu/server/neohearts-api/Dockerfile
+      context: ./server
+      dockerfile: ./server/Dockerfile
     ports:
       - "5177:5177"
     # restart: always
     env_file:
-      - ./server/neohearts-api/.env
+      - ./server/.env
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials.json
