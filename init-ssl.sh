@@ -15,6 +15,10 @@ mkdir -p ./nginx/conf
 mkdir -p ./certbot/www
 mkdir -p ./certbot/conf
 
+
+chmod 755 ./nginx/conf ./certbot/www ./certbot/conf
+
+
 # Create a temporary nginx conf for the initial certificate request
 cat > ./nginx/conf/default.conf << EOF
 server {
@@ -33,15 +37,15 @@ server {
 EOF
 
 # Start nginx
-docker-compose up -d nginx
+docker compose up -d nginx
 
 # Wait for nginx to start
 echo "Waiting for nginx to start..."
 sleep 5
 
 # Request the certificate
-docker-compose run --rm certbot certonly --webroot --webroot-path=/var/www/certbot \
-  --email $EMAIL --agree-tos --no-eff-email \
+docker compose run --rm certbot certonly --webroot --webroot-path=/var/www/certbot \
+  --email $EMAIL --agree-tos --no-eff-email --force-renewal \
   -d ${DOMAIN}
 
 # Replace the temporary nginx conf with the final one
@@ -99,6 +103,5 @@ server {
 EOF
 
 # Restart nginx to apply the new configuration
-docker-compose restart nginx
+docker compose restart nginx
 
-echo "SSL setup complete! Your .NET API should now be accessible via HTTPS."
