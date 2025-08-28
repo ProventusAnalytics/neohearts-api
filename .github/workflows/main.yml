@@ -21,10 +21,14 @@ jobs:
       - name: Deploy to GCP VM
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.GCP_SSH_USER }}@${{ secrets.GCP_SSH_HOST }} << 'EOF'
-            cd cd neohearts-api/
+            set -e
+            cd /neohearts-api
+            echo "Pulling latest code..."
             git fetch origin main
             git reset --hard origin/main
+            echo "Rebuilding and restarting containers..."
             docker compose down
             docker compose build
             docker compose up -d
+            echo "Deployment complete."
           EOF
