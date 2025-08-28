@@ -1,34 +1,41 @@
-name: Deploy to GCP
+name: Deploy to GCP Compute Engine
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.GCP_SSH_KEY }}
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.GCP_SSH_KEY }}
 
-      - name: Deploy to GCP VM
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.GCP_SSH_USER }}@${{ secrets.GCP_SSH_HOST }} << 'EOF'
-            set -e
-            cd /neohearts-api
-            echo "Pulling latest code..."
-            git fetch origin main
-            git reset --hard origin/main
-            echo "Rebuilding and restarting containers..."
-            docker compose down
-            docker compose build
-            docker compose up -d
-            echo "Deployment complete."
-          EOF
+    - name: Add known hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.GCP_SSH_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Deploy to server
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.GCP_SSH_USER }}@${{ secrets.GCP_SSH_HOST }} << 'EOF'
+          # Navigate to your project directory
+          cd neohearts-api
+
+          # Pull the latest code
+          git pull origin main
+
+          # Rebuild and restart containers
+          docker compose down
+          docker compose build --no-cache
+          docker compose up -d
+
+          # Clean up old images
+          docker image prune -f
+        EOF
