@@ -10,9 +10,6 @@ services:
       - ./server/.env
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - GOOGLE_APPLICATION_CREDENTIALS=/app/credentials.json
-      # Add any other environment variables your API needs below
-      # - ConnectionStrings__DefaultConnection=your_connection_string
 
     networks:
       - neohearts-network

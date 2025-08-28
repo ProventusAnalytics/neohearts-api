@@ -121,3 +121,4 @@ src/.vs/config/applicationhost.config
 
 certbot/
 *.pem
+nginx/
